@@ -5,15 +5,11 @@ package ss.week2.hotel;
  *
  */
 public class Hotel {
-	private int number;
 	private Guest hotelGuest;
-	private Safe hotelSafe1;
-	private Safe hotelSafe2;
 	private Room room101;
 	private Room room102;
 	private String hotelName;
 	private Password hotelPass;
-	private Guest guest1;	
 	//Constructors:
 	/**
 	 * Creates a <code>Hotel</code> with two rooms.
@@ -22,8 +18,6 @@ public class Hotel {
 		this.hotelName = name;
 		room101 = new Room(101);
 		room102 = new Room(102);
-		hotelSafe1 = new Safe("123456");
-		hotelSafe2 = new Safe("123456");
 		hotelPass = new Password();
 	}
 	
@@ -57,9 +51,9 @@ public class Hotel {
 	 * @return Room if there is one associated with the guest, otherwise null;
 	 */
 	/*@ pure */public Room getRoom(String name) {
-		if (room101.getGuest().getName().equals(name)) {
+		if (room101.getGuest() != null && room101.getGuest().getName().equals(name)) {
 			return room101;
-		} else if (room102.getGuest().getName().equals(name)) {
+		} else if (room102.getGuest() != null && room102.getGuest().getName().equals(name)) {
 			return room102;
 		} else {
 			return null;	
@@ -88,9 +82,9 @@ public class Hotel {
 		if (hotelPass.testWord(password) && (getFreeRoom() != null)) {
 			if (room101.getGuest() == null || !room101.getGuest().getName().equals(name) 
 					&& room102.getGuest() == null || !room102.getGuest().getName().equals(name)) {
-				guest1 = new Guest(name);
-				guest1.checkin(getFreeRoom());
-				return guest1.getRoom();
+				hotelGuest = new Guest(name);
+				hotelGuest.checkin(getFreeRoom());
+				return hotelGuest.getRoom();
 			} else {
 				return null;
 			}
@@ -99,6 +93,8 @@ public class Hotel {
 		}
 	}
 	/**
+	 * What is happening here? It fails to run, no matter the implementation.
+	 * And if activate is included it also fails to run.
 	 * The guest is checked out and the safe in the room is deactivated.
 	 * If there is no guest, nothing happens.
 	 * @param name - Name of the guest checking out.
@@ -106,11 +102,16 @@ public class Hotel {
 	//@ ensures getRoom(name) == null;
 	//@ ensures getRoom(name).getSafe().isActive() == false;
 	public void checkOut(String name) {
-		if (this.getRoom(name) != null) {
-			this.getRoom(name).getSafe().deactivate();
-			this.getRoom(name).getGuest().checkout();			
+		if(room101.getGuest() != null && room101.getGuest().getName().equals(name)) {
+			room101.getGuest().checkout();
+			room101.getSafe().deactivate();
+		}
+		else if(room102.getGuest() != null && room102.getGuest().getName().equals(name)) {
+			room102.getGuest().checkout();
+			room102.getSafe().deactivate();
 		}
 	}
+	
 
 
 /**
@@ -119,40 +120,19 @@ public class Hotel {
  */
 	public String toString() {
 
-		String a = "Name: " + this.getName() + "\r"; 
-
-		if (room101.getGuest() != null && room102.getGuest() != null) {
-
-			String b =	"Guests of Room1: " + room101.getGuest().getName() + "\r";
-
-			String c =	"Status of safe: " + room101.getSafe().isActive() + "\r";
-
-			String d =	"Guests of Room2: " + room102.getGuest().getName() + "\r";
-
-			String e =	"Status of safe: " + room102.getSafe().isActive() + "\r";
-
-			return a + b + c + d + e;
-
-		} else if (room101.getGuest() != null || room102.getGuest() != null) {
-
-			if (room101.getGuest() != null) {
-
-				String b =	"Guests of Room1: " + room101.getGuest().getName() + "\r";
-
-				String c =	"Status of safe: " + room101.getSafe().isActive() + "\r";
-
-				return a + b + c;
-
-			} else {
-				String d =	"Guests of Room2: " + room102.getGuest().getName() + "\r";
-
-				String e =	"Status of safe: " + room102.getSafe().isActive() + "\r";
-
-				return a + d + e;	
-			}
+		String read = ""; 
+		if (room101.getGuest() != null) {
+			read += " Guest in Room1: " + room101.getGuest().getName()
+					+ " Safe: " + (room101.getSafe().isActive() ? "active" : "inactive");
+		} 
+		if (room102.getGuest() != null) {
+			read += " Guest in Room2: " + room102.getGuest().getName()
+					+ " Safe: " + (room102.getSafe().isActive() ? "active" : "inactive");
 		}
 
-		return a;
+		System.out.print(read);
 
+		System.out.flush();		
+		return read;
 	}
 }

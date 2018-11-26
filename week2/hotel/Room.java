@@ -22,7 +22,7 @@ public class Room {
      * @param no number of the new <code>Room</code>
      */
     public Room(int number) {
-    	this(number, new Safe("123456"));
+    	this(number, new Safe());
     }
 
     // ------------------ Queries --------------------------

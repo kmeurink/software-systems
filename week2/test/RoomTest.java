@@ -1,6 +1,6 @@
 package ss.week2.test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -18,7 +18,7 @@ public class RoomTest {
     public void setUp() {
         guest = new Guest("Jip");
         // DONE: initialise the variable room
-        room = new Room( 101, hotelSafe);
+        room = new Room(101);
     }
 
     @Test
@@ -34,7 +34,10 @@ public class RoomTest {
     @Test
     public void testGetSafe() {
     	assertEquals(hotelSafe, room.getSafe());
+    }
+    @Test
+    public void testGetSafeActive() {
+    	assertNull(room.getSafe().isActive());
     	
     }
-    
 }

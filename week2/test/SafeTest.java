@@ -23,12 +23,12 @@ class SafeTest {
 	@BeforeEach
 	void setUp() {
 		//Initialisation of the safe-variables
-		safeinit = new Safe("123456");
-		safeActive = new Safe("123456");
-		safeActive.activate("123456");
-		safeOpen = new Safe("123456");
-		safeOpen.activate("123456");
-		safeOpen.open("123456");
+		safeinit = new Safe();
+		safeActive = new Safe();
+		safeActive.activate("banana");
+		safeOpen = new Safe();
+		safeOpen.activate("banana");
+		safeOpen.open("banana");
 	}
 	/**
 	 * Test if the initial conditions comply to specifications.
@@ -48,9 +48,9 @@ class SafeTest {
 	 */
 	@Test
 	void testActivateCorrect() {
-		safeinit.activate("123456");
+		safeinit.activate("banana");
 		assertTrue(safeinit.isActive());
-		safeinit.activate("123456");
+		safeinit.activate("banana");
 		assertTrue(safeinit.isActive());
 	}
 	/**
@@ -81,11 +81,11 @@ class SafeTest {
 	 */
 	@Test
 	void testOpenCorrect() {
-		safeActive.open("123456");
+		safeActive.open("banana");
 		assertTrue(safeActive.isOpen());
-		safeOpen.open("123456");
+		safeOpen.open("banana");
 		assertTrue(safeOpen.isOpen());
-		safeinit.open("123456");
+		safeinit.open("banana");
 		assertFalse(safeinit.isOpen());
 	}
 	/**

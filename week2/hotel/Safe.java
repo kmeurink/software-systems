@@ -5,6 +5,7 @@ package ss.week2.hotel;
  *
  */
 public class Safe {
+	//Instance variables:
 	private Password currentpassword;
 	private boolean active;
 	private boolean open;
@@ -23,15 +24,12 @@ public class Safe {
 	 * Constructs a safe, initializing a Password object to store a password for the safe.
 	 * The safe start closed and inactive. 
 	 */
-	//@ requires Password.acceptable(password);
 	//@ ensures isActive () == false;
 	//@ ensures isOpen() == false;
-	public Safe(String password) {
-		assert Password.acceptable(password);
+	public Safe() {
 		this.currentpassword = new Password();
-		this.currentpassword.setWord(Password.INITIAL, password);
-		this.active = false;
-		this.open = false;		
+		active = false;
+		open = false;		
 	}
 	
 	//Queries:
@@ -41,7 +39,7 @@ public class Safe {
 	 */
 	//@ ensures \result == true || \result == false;
 	/*@ pure */public boolean isActive() {
-		return this.active;
+		return active;
 	}
 	
 	/**
@@ -50,14 +48,14 @@ public class Safe {
 	 */
 	//@ ensures \result == true || \result == false;
 	/*@ pure */public boolean isOpen() {
-		return this.open;
+		return open;
 	}
 	
 	/**
 	 * Retrieves the Password object.
 	 */
 	/*@ pure */public Password getPassword() {
-		return this.currentpassword;
+		return currentpassword;
 	}
 	
 	//Commands:
@@ -68,8 +66,8 @@ public class Safe {
 	//@ requires getPassword().equals(password); 
 	//@ ensures isActive() == true;
 	public void activate(String password) {
-		if (this.currentpassword.testWord(password)) {
-			this.active = true;
+		if (currentpassword.testWord(password)) {
+			active = true;
 		}
 	}
 	
@@ -79,8 +77,8 @@ public class Safe {
 	//@ ensures isActive() == false;
 	//@ ensures isOpen() == false;
 	public void deactivate() {
-		this.open = false;
-		this.active = false;
+		open = false;
+		active = false;
 	}
 	
 	/**
@@ -91,8 +89,8 @@ public class Safe {
 	//@ requires isActive() == true;
 	//@ ensures isOpen() == true;
 	public void open(String password) {
-		if (this.currentpassword.testWord(password) && isActive()) {
-			this.open = true;
+		if (this.currentpassword.testWord(password) && active) {
+			open = true;
 		}
 	}
 	
@@ -102,7 +100,7 @@ public class Safe {
 	//@ ensures isOpen() == false;
 	//@ ensures \old(isActive()) == isActive();
 	public void close() {
-		this.open = false;
+		open = false;
 	}
 	
 	
