@@ -5,10 +5,10 @@ public class Print {
 	public static void print(Function f) {
 		System.out.println("f = "+f);
 		System.out.println("f' = " + f.derivative());
-		if (f instanceof Integrable) {
-			System.out.println("F = " + ((Integrable) f).integral());
-		}
-		System.out.println("f(1) = "+f.apply(1));
-		System.out.println("f(2) = "+f.apply(2));
+		//if (f instanceof Integrable) {
+		//	System.out.println("F = " + ((Integrable) f).integral());
+		//}
+		System.out.println("f(1) = " + f.apply(1));
+		System.out.println("f(2) = " + f.apply(2));
 	}
 }

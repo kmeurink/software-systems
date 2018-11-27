@@ -62,8 +62,8 @@ public class HotelTest {
     public void testCheckoutOccupiedRoom() {
         Room room = hotel.checkIn(correctPassword, GUEST_NAME_1);
         Guest guest = room.getGuest();
-        //Safe safe = room.getSafe();
-        //safe.activate(Password.INITIAL);
+        Safe safe = room.getSafe();
+        safe.activate(Password.INITIAL);
 
         hotel.checkOut(GUEST_NAME_1);
         assertNull("Guest has no room", guest.getRoom());
