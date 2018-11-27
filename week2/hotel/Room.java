@@ -16,6 +16,7 @@ public class Room {
      */
     public Room(int number, Safe safe) {
     	this.number = number;
+    	this.safe = safe;
     }
     /**
      * Creates a <code>Room</code> with the given number, without a guest.

@@ -18,7 +18,9 @@ public class RoomTest {
     public void setUp() {
         guest = new Guest("Jip");
         // DONE: initialise the variable room
-        room = new Room(101);
+        hotelSafe = new Safe();
+        room = new Room(101, hotelSafe);
+        
     }
 
     @Test
@@ -37,7 +39,7 @@ public class RoomTest {
     }
     @Test
     public void testGetSafeActive() {
-    	assertNull(room.getSafe().isActive());
+    	assertFalse(room.getSafe().isActive());
     	
     }
 }
