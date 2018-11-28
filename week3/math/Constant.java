@@ -3,7 +3,6 @@ package ss.week3.math;
 public class Constant implements Function{
 
 	private double argument;
-	private Constant con;
 	private String read = "";
 	public static void main(String[] args) {
 		Print.print(new Constant(2.0));
