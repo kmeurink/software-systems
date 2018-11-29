@@ -32,8 +32,10 @@ public class Constant implements Integrable{
 	/**
 	 * @return Returns the Function object that is an integral of the current function.
 	 */
-	public Function integral() {
-		return new Product(new Constant(this.argument), new Identity());
+	@Override
+	public Integrable integral() {
+		
+		return null;//new Product(new Constant(this.argument), new Identity());;
 	}
 	
 	/**

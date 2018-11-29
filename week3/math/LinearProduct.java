@@ -26,7 +26,7 @@ public class LinearProduct extends Product implements Integrable{
 	 * @return Returns the Function object that is an integral of the current function.
 	 */
 	@Override
-	public Function integral() {
+	public Integrable integral() {
 		return null; //new LinearProduct(argument1, argument2.integral());
 			}
 }

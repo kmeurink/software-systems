@@ -47,7 +47,7 @@ public class Exponent implements Integrable{
 	/**
 	 * @return Returns the Function object that is an integral of the current function.
 	 */
-	public Function integral() {
+	public Integrable integral() {
 		return new LinearProduct(new Constant(1/(numeral + 1)), new Exponent(numeral + 1));
 	}
 	

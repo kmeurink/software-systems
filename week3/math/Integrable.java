@@ -6,5 +6,5 @@ public interface Integrable extends Function{
 	/**
 	 * @return Returns the Function object that is an integral of the current function.
 	 */
-	public Function integral();
+	public Integrable integral();
 }

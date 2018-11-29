@@ -34,8 +34,8 @@ public class Identity implements Integrable{
 	/**
 	 * @return Returns the Function object that is an integral of the current function.
 	 */
-	public Function integral() {
-		return new Product(new Constant(0.5), new Exponent(2));
+	public Integrable integral() {
+		return null;//new Product(new Constant(0.5), new Exponent(2));
 	}
 	
 	@Override
