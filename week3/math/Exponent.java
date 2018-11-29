@@ -1,9 +1,7 @@
 package ss.week3.math;
 
 public class Exponent implements Integrable{
-	
-	private Function argument1;
-	private Function argument2;
+
 	private double totalExponent;
 	private int numeral;
 	
@@ -48,7 +46,8 @@ public class Exponent implements Integrable{
 	 * @return Returns the Function object that is an integral of the current function.
 	 */
 	public Integrable integral() {
-		return new LinearProduct(new Constant(1/(numeral + 1)), new Exponent(numeral + 1));
+		double value = (1/((double)numeral + 1));
+		return new LinearProduct(new Constant(value), new Exponent(numeral + 1));
 	}
 	
 	@Override

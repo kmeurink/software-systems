@@ -1,6 +1,6 @@
 package ss.week3.math;
 
-public class Product implements Function{
+public class Product implements Integrable{
 	protected Function argument1;
 	protected Function argument2;
 	private double totalProduct;

@@ -17,6 +17,7 @@ public class LinearProduct extends Product implements Integrable{
 	/**
 	 * @return Returns the Function object that is a derivative of the current function.
 	 */
+	@Override
 	public Function derivative() {
 		Function derProd1 = new LinearProduct(this.argument1, this.argument2.derivative());
 		return derProd1;
@@ -28,5 +29,5 @@ public class LinearProduct extends Product implements Integrable{
 	@Override
 	public Integrable integral() {
 		return null; //new LinearProduct(argument1, argument2.integral());
-			}
+	}
 }

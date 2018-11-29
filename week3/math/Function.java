@@ -1,6 +1,6 @@
 package ss.week3.math;
 
-public interface Function {
+public interface Function{
 	
 	/**
 	 * Applies the corresponding function to the provided argument.

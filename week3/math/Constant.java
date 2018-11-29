@@ -35,7 +35,7 @@ public class Constant implements Integrable{
 	@Override
 	public Integrable integral() {
 		
-		return null;//new Product(new Constant(this.argument), new Identity());;
+		return new Product(new Constant(this.argument), new Identity());
 	}
 	
 	/**
