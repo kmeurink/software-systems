@@ -1,14 +1,11 @@
 package ss.week3.math;
 
-public class LinearProduct extends Product{
-	private Function argument1;
-	private Function argument2;
-	private double totalProduct;
+public class LinearProduct extends Product implements Integrable{
+	protected Constant argument1;
 	
-	public LinearProduct(Function argument1, Function argument2) {
+	public LinearProduct(Constant argument1, Function argument2) {
 		super(argument1, argument2);
 		this.argument1 = argument1;
-		this.argument2 = argument2;
 	}
 	
 	/**
@@ -16,20 +13,20 @@ public class LinearProduct extends Product{
 	 * @param argument - being a double value
 	 * @return result of the applied function.
 	 */
-	public double apply(double argument) {
-		double partProduct1 = this.argument1.apply(argument);
-		double partProduct2 = this.argument2.apply(argument);
-		totalProduct = partProduct1 * partProduct2;
-		return totalProduct;
-	}
 	
 	/**
 	 * @return Returns the Function object that is a derivative of the current function.
 	 */
 	public Function derivative() {
-		Function derivative1 = argument1.derivative();
-		Function derProd1 = new LinearProduct(derivative1, argument2);
+		Function derProd1 = new LinearProduct(this.argument1, this.argument2.derivative());
 		return derProd1;
 	}
 
+	/**
+	 * @return Returns the Function object that is an integral of the current function.
+	 */
+	@Override
+	public Function integral() {
+		return null; //new LinearProduct(argument1, argument2.integral());
+			}
 }

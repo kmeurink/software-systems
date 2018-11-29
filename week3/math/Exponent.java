@@ -1,11 +1,14 @@
 package ss.week3.math;
 
-public class Exponent implements Function{
+public class Exponent implements Integrable{
 	
 	private Function argument1;
 	private Function argument2;
 	private double totalExponent;
 	private int numeral;
+	
+	public static void main(String[] args) {
+		Print.print(new Exponent(3));	}
 	
 	public Exponent(int numeral) {
 		this.numeral = numeral;
@@ -36,9 +39,23 @@ public class Exponent implements Function{
 	 */
 	public Function derivative() {
 		Function partExponent = new Exponent(numeral - 1);
-		Function partConstant = new Constant(numeral);
-		Function productExponent = new Product(partExponent, partConstant);
-		return productExponent;
+		Constant partConstant = new Constant(numeral);
+		
+		return new LinearProduct(partConstant, partExponent);
 	}
 
+	/**
+	 * @return Returns the Function object that is an integral of the current function.
+	 */
+	public Function integral() {
+		return new LinearProduct(new Constant(1/(numeral + 1)), new Exponent(numeral + 1));
+	}
+	
+	@Override
+
+	public String toString() {
+		return "x^" + this.numeral;
+
+	}
+	
 }

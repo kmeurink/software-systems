@@ -1,14 +1,13 @@
 package ss.week3.math;
 
-public class Sum implements Function{
+public class Sum implements Integrable{
 	private Function argument1;
 	private Function argument2;
 	private String read = "";
 	private double totalSum;
 	
 	public static void main(String[] args) {
-		//Print.print(new Sum(Constant(2.0), Constant(2.0)));
-	}
+		Print.print(new Sum(new Constant(2.0), new Identity()));	}
 	
 	public Sum(Function argument1, Function argument2) {
 		this.argument1 = argument1;
@@ -37,10 +36,20 @@ public class Sum implements Function{
 	}
 	
 	/**
+	 * @return Returns the Function object that is an integral of the current function.
+	 */
+	public Function integral() {
+		return null;
+	}
+	
+	/**
 	 * Returns a readable string representation of the Function.
 	 */
-	//public String toString() {
-	//	return read + this.apply(argument);
+	@Override
 
-	//}
+	public String toString() {
+
+		return this.argument1.toString() + " + " + this.argument2.toString();
+
+	}
 }

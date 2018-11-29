@@ -1,9 +1,15 @@
 package ss.week3.math;
 
-public class Identity implements Function{
+public class Identity implements Integrable{
 	
 	private double argument;
 
+	public static void main (String[] args) {
+
+		Print.print(new Identity());
+
+	}
+	
 	public Identity() {	
 	}
 	
@@ -25,4 +31,18 @@ public class Identity implements Function{
 		return con;
 	}
 	
+	/**
+	 * @return Returns the Function object that is an integral of the current function.
+	 */
+	public Function integral() {
+		return new Product(new Constant(0.5), new Exponent(2));
+	}
+	
+	@Override
+
+	public String toString() {
+
+		return "x";
+
+	}
 }

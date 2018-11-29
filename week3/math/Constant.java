@@ -1,6 +1,6 @@
 package ss.week3.math;
 
-public class Constant implements Function{
+public class Constant implements Integrable{
 
 	private double argument;
 	private String read = "";
@@ -27,6 +27,13 @@ public class Constant implements Function{
 	public Function derivative() {
 		Constant con = new Constant(0);
 		return con;
+	}
+	
+	/**
+	 * @return Returns the Function object that is an integral of the current function.
+	 */
+	public Function integral() {
+		return new Product(new Constant(this.argument), new Identity());
 	}
 	
 	/**
