@@ -38,8 +38,13 @@ public class Sum implements Integrable{
 	/**
 	 * @return Returns the Function object that is an integral of the current function.
 	 */
+	@Override
 	public Integrable integral() {
-		return null;
+		if (argument1 instanceof Integrable && argument2 instanceof Integrable) {
+			return new Sum(((Integrable) argument1).integral(), ((Integrable) argument2).integral());
+		} else {
+			return null;
+		}	
 	}
 	
 	/**

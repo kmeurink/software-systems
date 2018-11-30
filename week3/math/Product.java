@@ -47,7 +47,7 @@ public class Product implements Integrable{
 
 	public String toString() {
 
-		return this.argument1.toString() + " + " + this.argument2.toString();
+		return this.argument1.toString() + " * " + this.argument2.toString();
 
 	}
 }
