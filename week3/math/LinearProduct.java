@@ -28,6 +28,7 @@ public class LinearProduct extends Product implements Integrable{
 	 */
 	@Override
 	public Integrable integral() {
+		Integrable integral1 = argument2.integral();
 		return null; //new LinearProduct(argument1, argument2.integral());
 	}
 }

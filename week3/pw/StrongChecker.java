@@ -1,9 +1,11 @@
 package ss.week3.pw;
 
-public class BasicChecker implements Checker{
+import java.lang.Character;
+
+public class StrongChecker implements Checker{
 	public static final String INITPASS = "Hello12345";
-			
-	public BasicChecker() {
+	
+	public StrongChecker() {
 		
 	}
 	
@@ -14,7 +16,15 @@ public class BasicChecker implements Checker{
 	//@ requires pass != null;
 	//@ ensures \result == true || \result == false;
 	public boolean acceptable(String pass) {
-		return Checker.super.acceptable(pass);
+		if (Checker.super.acceptable(pass)) {
+			if (Character.isLetter(pass.charAt(0)) && Character.isDigit(pass.charAt(pass.length()-1))) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
 	}
 	
 	/**
@@ -30,7 +40,7 @@ public class BasicChecker implements Checker{
 
 	public static void main(String[] args) {
 
-		BasicChecker checker = new BasicChecker();
+		StrongChecker checker = new StrongChecker();
 
 		System.out.println(checker.generatePassword());
 		System.out.println(checker.acceptable(checker.generatePassword()));
