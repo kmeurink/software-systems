@@ -2,6 +2,12 @@ package ss.week3.pw;
 
 import java.lang.Character;
 
+/**
+ * A stronger checker class for testing passwords.
+ * @author kester.meurink
+ *
+ */
+
 public class StrongChecker implements Checker{
 	public static final String INITPASS = "Hello12345";
 	

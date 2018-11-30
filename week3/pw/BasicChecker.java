@@ -1,5 +1,11 @@
 package ss.week3.pw;
 
+/**
+ * A basic checker class for testing passwords.
+ * @author kester.meurink
+ *
+ */
+
 public class BasicChecker implements Checker{
 	public static final String INITPASS = "Hello12345";
 			
