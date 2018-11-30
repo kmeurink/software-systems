@@ -8,7 +8,7 @@ import java.lang.Character;
  *
  */
 
-public class StrongChecker implements Checker{
+public class StrongChecker extends BasicChecker implements Checker{
 	public static final String INITPASS = "Hello12345";
 	
 	public StrongChecker() {
@@ -21,8 +21,9 @@ public class StrongChecker implements Checker{
 	 */
 	//@ requires pass != null;
 	//@ ensures \result == true || \result == false;
+	@Override
 	public boolean acceptable(String pass) {
-		return(Checker.super.acceptable(pass) && Character.isLetter(pass.charAt(0)) && Character.isDigit(pass.charAt(pass.length()-1)));
+		return(super.acceptable(pass) && Character.isLetter(pass.charAt(0)) && Character.isDigit(pass.charAt(pass.length()-1)));
 	}
 	
 	/**
