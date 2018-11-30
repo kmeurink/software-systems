@@ -6,7 +6,7 @@ package ss.week3.pw;
  *
  */
 
-public class BasicChecker implements Checker{
+public class BasicChecker implements Checker {
 	public static final String INITPASS = "Hello12345";
 			
 	public BasicChecker() {
