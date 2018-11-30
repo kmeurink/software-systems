@@ -16,15 +16,7 @@ public class StrongChecker implements Checker{
 	//@ requires pass != null;
 	//@ ensures \result == true || \result == false;
 	public boolean acceptable(String pass) {
-		if (Checker.super.acceptable(pass)) {
-			if (Character.isLetter(pass.charAt(0)) && Character.isDigit(pass.charAt(pass.length()-1))) {
-				return true;
-			} else {
-				return false;
-			}
-		} else {
-			return false;
-		}
+		return(Checker.super.acceptable(pass) && Character.isLetter(pass.charAt(0)) && Character.isDigit(pass.charAt(pass.length()-1)));
 	}
 	
 	/**
