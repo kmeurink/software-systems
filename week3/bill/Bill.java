@@ -12,28 +12,26 @@ public class Bill {
 	//Constants:
 	protected Printer hotelPrinter;
 	private double totalSum;
+	protected boolean billClosed = false;
 	
 	public Bill(Printer printer) {
 		this.hotelPrinter = printer;
+		this.totalSum = 0.0;
 	}
 	
 	/**
 	 * Abstraction of the items on the bill.
 	 */
 	//Interface:
-	public interface Item {
+	public static interface Item {
 		
 		/**
-		 * Show the description of the item
-		 * @return the description of the item.
+		 * Show the amount of the item.
+		 * @return Returns the amount associated with an item.
 		 */
-		public String getDescription();
+		public double getAmount();
 		
-		/**
-		 * Show the price associated with the item.
-		 * @return Returns the prices associated with an item.
-		 */
-		public double getPrice();
+		public String toString();
 		
 	}
 	
@@ -53,15 +51,17 @@ public class Bill {
 	 * The item is sent to the printer,and the amount is added to the sum of the Bill
 	 * @param item - An item to be billed.
 	 */
-	public void addItem(Item item) {
-		this.hotelPrinter.printLine(item.getDescription(), item.getPrice());
-		totalSum += item.getPrice();
+	public void addItem(Bill.Item item) {
+		this.hotelPrinter.printLine(item.toString(), item.getAmount());
+		totalSum += item.getAmount();
 	}
 	
-	/**
+	/**	
 	 * Sends the sum total of the bill to the printer.
 	 */
 	public void close() {
-		this.hotelPrinter.printLine("Total cost is:", totalSum); 
+		this.hotelPrinter.printLine("Total cost is: ", totalSum);
+		billClosed = true;
 	}
+	
 }
