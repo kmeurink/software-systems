@@ -7,14 +7,14 @@ package ss.week3.bill;
  */
 public class SysoutPrinter implements Printer{
 
-	/**public static void main(String[] args) {
+	public static void main(String[] args) {
 		Printer pr = new SysoutPrinter();
 		pr.printLine("Text1", 1.00);
 		pr.printLine("Other text", -12.1212);
 		pr.printLine("Something", 0.20);
 	
 	}
-	*/
+	
 	public SysoutPrinter() {
 		
 	}
@@ -30,5 +30,6 @@ public class SysoutPrinter implements Printer{
 		System.out.println(format(text, price));
 	}
 	
+
 
 }

@@ -12,7 +12,7 @@ public interface Printer {
 	//@ ensures \result != null;
 	default
 		public String format(String text, double price) {
-		return String.format("%-18s %8.2f", text, price);
+		return String.format("%-18s %8.2f \n", text, price);
 	}
 	
 	/**
