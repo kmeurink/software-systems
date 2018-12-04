@@ -3,10 +3,26 @@ package ss.week4;
 public class Exercises {
     public static int countNegativeNumbers(int[] arr) {
         // TODO: implement, see exercise P-4.1
+    	int count = 0;
+    	for (int i = 0; i < arr.length; i++) {
+    		if (arr[i] < 0) {
+    			count += 1;
+    		}
+    	}
+    	return count;
     }
 
     public static void reverseArray(int[] ints) {
         // TODO: implement, see exercise P-4.2
+    	int low = 0;
+    	int high = ints.length - 1;
+    	while (low < high) {
+    		int temp = ints[low];
+    		ints[low] = ints[high];
+    		ints[high] = temp;
+    		low = low + 1;
+    		high = high - 1;
+    	}
     }
 
     class SimpleList {
