@@ -7,8 +7,8 @@ package ss.additional;
  */
 public class Rook implements Piece{
 
-	private int row;
-	private int col;
+	private int currentRow = 5;
+	private int currentCol = 4;
 	
 	public Rook() {
 		
@@ -19,14 +19,22 @@ public class Rook implements Piece{
 		 * @return true if the Rook is allowed to move.
 		 */
 		/*@ pure*/public boolean canMoveTo(int row, int col) {
-			
+		if (currentRow != row && currentCol == col || currentCol != col && currentRow == row) {
+			return true;
+		} else {
+			return false;
 		}
+	}
 		
 		/**
 		 * Moves the Rook to the selected square.
 		 */
-		//@ requires canMoveTo( row, col) == true;
-		public void moveTo(int row, int col) {
-			
+	//@ requires canMoveTo(row, col) == true;
+	@Override
+	public void moveTo(int row, int col) {
+		if (canMoveTo(row, col) == true) {
+			this.currentRow = row;
+			this.currentCol = col;
 		}
+	}
 }

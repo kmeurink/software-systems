@@ -17,7 +17,7 @@ public class PricedSafeTest {
 
     @Before
     public void setUp() throws Exception {
-        item = new PricedSafe(PRICE);
+        item = new PricedSafe(PRICE);    
     }
 
     @Test
