@@ -5,7 +5,6 @@ import ss.week3.math.Constant;
 import ss.week3.math.Exponent;
 import ss.week3.math.Integrable;
 import ss.week3.math.Product;
-import ss.week3.math.Identity;
 
 public class Polynomial implements Integrable {
 	
