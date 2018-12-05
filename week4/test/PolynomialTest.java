@@ -20,14 +20,14 @@ public class PolynomialTest {
     public void setUp() {
     	polynomial1 = new Polynomial(new double[]{1, -4, 7});
     	polynomial2 = new Polynomial(new double[]{1, 2, -1, 1});
-    	polynomial3 = new Polynomial(new double[]{2, 2, 2, 2, 2});
-    }
+    	polynomial3 = new Polynomial(new double[]{4, 2, -2, 2, 9});
+    }	
 
     @Test
     public void testApply1() {
         assertEquals(4, polynomial1.apply(1), DELTA);
         assertEquals(3, polynomial2.apply(1), DELTA);
-        assertEquals(10, polynomial3.apply(1), DELTA);
+        assertEquals(15, polynomial3.apply(1), DELTA);
     }
     /*
      * Is a bit of an excessive test, but allows for testing of the influence of the x argument.
@@ -35,8 +35,8 @@ public class PolynomialTest {
     @Test
     public void testApply2() {
         assertEquals(3, polynomial1.apply(2), DELTA);
-        assertEquals(11, polynomial2.apply(2), DELTA);
-        assertEquals(62, polynomial3.apply(2), DELTA);
+        assertEquals(15, polynomial2.apply(2), DELTA);
+        assertEquals(85, polynomial3.apply(2), DELTA);
     }
 	
 

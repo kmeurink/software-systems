@@ -19,7 +19,8 @@ public class Exponent implements Integrable{
 	 * @return result of the applied function.
 	 */
 	public double apply(double argument) {
-		if (numeral == 0) {
+		return Math.pow(argument, this.numeral);
+		/*if (numeral == 0) {
 			return 1;
 		} else {
 			int i = 1;
@@ -29,7 +30,7 @@ public class Exponent implements Integrable{
 				i = i + 1;
 			}
 			return totalExponent;
-		}
+		}*/
 	}
 	
 	/**

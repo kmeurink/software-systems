@@ -1,6 +1,11 @@
 package ss.week4;
 
-import ss.week3.math.*;
+
+import ss.week3.math.Constant;
+import ss.week3.math.Exponent;
+import ss.week3.math.Integrable;
+import ss.week3.math.Product;
+import ss.week3.math.Identity;
 
 public class Polynomial implements Integrable {
 	
@@ -23,10 +28,11 @@ public class Polynomial implements Integrable {
 	 */
 	public double apply(double argument) {
 		for (int i = 0; i < this.coefficients.length; i++) {
-			Exponent polyExponent = new Exponent(this.coefficients.length - (i + 1));
-			Identity polyIdentity = new Identity();
-			Constant polyConstant = new Constant(coefficients[i]);
-			polynomialTotal += polyConstant.apply(argument) * polyExponent.apply(polyIdentity.apply(argument));
+		//	Exponent polyExponent = new Exponent(this.coefficients.length -	(i + 1));
+		//	Identity polyIdentity = new Identity();
+		//	Constant polyConstant = new Constant(coefficients[i]);
+			System.out.println("Size:" + (this.coefficients.length -	(i + 1)));
+			polynomialTotal += (new Product(new Constant(coefficients[i]), new Exponent(this.coefficients.length -	(i + 1)))).apply(argument);
 			System.out.println("Polynomial value:" + polynomialTotal);
 		}
 		System.out.println("Final value:" + polynomialTotal);
