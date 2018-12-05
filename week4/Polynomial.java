@@ -28,29 +28,21 @@ public class Polynomial implements Integrable {
 	 */
 	public double apply(double argument) {
 		for (int i = 0; i < this.coefficients.length; i++) {
-		//	Exponent polyExponent = new Exponent(this.coefficients.length -	(i + 1));
-		//	Identity polyIdentity = new Identity();
-		//	Constant polyConstant = new Constant(coefficients[i]);
-			System.out.println("Size:" + (this.coefficients.length -	(i + 1)));
 			polynomialTotal += (new Product(new Constant(coefficients[i]), new Exponent(this.coefficients.length -	(i + 1)))).apply(argument);
-			System.out.println("Polynomial value:" + polynomialTotal);
 		}
-		System.out.println("Final value:" + polynomialTotal);
 		return polynomialTotal;
 	}
 	
 	/**
 	 * Models the derivative of a polynomial function.
 	 */
-	public Function derivative() {
+	public Integrable derivative() {
 		double[] polynomialDerivative;
-		for (int i = 0; i < this.array.length; i++) {
-			Exponent polyExponentDer = new Exponent(this.array.length - i);
-			Identity polyIdentityDer = new Identity();
-			Constant polyConstantDer = new Constant(array[i]);
-			//polynomialDerivative += polyConstant.derivative() * polyExponent.derivative();
+		polynomialDerivative = new double[this.coefficients.length - 1];
+		for (int i = 0; i < this.coefficients.length - 1; i++) {
+			polynomialDerivative[i] = this.coefficients[i] * (this.coefficients.length - (i + 1));
 		}
-		return null;
+		return new Polynomial(polynomialDerivative);
 	}
 	/**
 	 * Models the integral of a polynomial function.
