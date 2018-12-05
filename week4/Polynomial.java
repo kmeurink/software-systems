@@ -48,6 +48,12 @@ public class Polynomial implements Integrable {
 	 * Models the integral of a polynomial function.
 	 */
 	public Integrable integral() {
-		return null;
+		double[] polynomialIntegral;
+		polynomialIntegral = new double[this.coefficients.length + 1];
+		polynomialIntegral[polynomialIntegral.length - 1] = 0.0;
+		for (int i = 0; i < this.coefficients.length; i++) {
+			polynomialIntegral[i] = this.coefficients[i] / (double)(polynomialIntegral.length - i - 1);
+		}
+		return new Polynomial(polynomialIntegral);
 	}
 }
