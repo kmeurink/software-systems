@@ -28,13 +28,14 @@ public class MergeSort {
      * Method to split the original list into lists of one element.
      * @param list - The original list.
      */
-    public static <E> void split(List<E> list, int low, int high) {
-    	if (low < high) {
+    public static <E extends Comparable<E>> void split(List<E> list, int low, int high) {
+    	if (list.size() > 2) {
         	int mid = (high - low) / 2;
         	split(list, low, mid);
         	split(list, mid + 1, high);
-        	merge(list, low, mid, high);
     	}
+    	merge(list, low, high);
+
     }
     /**
      * Method to merge the singular lists in an ordered sequence.
@@ -42,10 +43,10 @@ public class MergeSort {
      * @param low - The lowest index of the list.
      * @param high - The highest index of the list.
      */
-    public static <E> void merge(List<E> list, int low, int mid, int high) {
-    	if (low == mid && mid + 1 == high) {
-    		
-    	} else if (mid + 1 == high) {
+    public static <E extends Comparable<E>> void merge(List<E> list, int low, int high) {
+    	E valueOne = list.get(low);
+    	E valueTwo = list.get(high);
+    	if (valueOne.compareTo(valueTwo) < 0 || valueOne.compareTo(valueTwo) == 0) {
     		
     	}
     }
