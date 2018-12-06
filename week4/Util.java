@@ -2,11 +2,10 @@ package ss.week4;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.lang.String;
 
 public class Util {
-    public static <Element> List<Element> zip(List<Element> l1, List<Element> l2) {
-        ArrayList<Element> result = new ArrayList<>();
+    public static <E> List<E> zip(List<E> l1, List<E> l2) {
+        ArrayList<E> result = new ArrayList<>();
         for (int i = 0; i < l1.size(); i++) {
             result.add(l1.get(i));
             result.add(l2.get(i));
