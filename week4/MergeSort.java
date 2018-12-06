@@ -9,8 +9,6 @@ public class MergeSort {
 	//Constructor:
     public static <E extends Comparable<E>>
            void mergesort(List<E> list) {
-    	List<E> tempList = new ArrayList<E>();
-    	tempList = list;
     	int low = 0;	
     	int high = list.size() - 1;
     	split(list, low, high);
@@ -44,11 +42,15 @@ public class MergeSort {
      * @param high - The highest index of the list.
      */
     public static <E extends Comparable<E>> void merge(List<E> list, int low, int high) {
-    	E valueOne = list.get(low);
-    	E valueTwo = list.get(high);
-    	if (valueOne.compareTo(valueTwo) < 0 || valueOne.compareTo(valueTwo) == 0) {
-    		
-    	}
+    	List<E> tempList = new ArrayList<E>();
+    	tempList = list;
+    	E valueOne = tempList.get(low);
+    	E valueTwo = tempList.get(high);
+    	int valueFirst = valueOne.compareTo(valueTwo);
+       	if (valueFirst < 0 || valueFirst == 0) {
+        	list.set(low, valueOne);
+        	list.set(high, valueTwo);
+        }
     }
-     
 }
+
