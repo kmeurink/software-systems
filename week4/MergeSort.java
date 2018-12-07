@@ -13,7 +13,6 @@ public class MergeSort {
     public static <E extends Comparable<E>>
     	void mergesort(List<E> list) {
     	split(list);
-
     }
 	
     /**
@@ -29,7 +28,7 @@ public class MergeSort {
     	List<E> leftList = list.subList(0, mid);
     	List<E> rightList = list.subList(mid, list.size());
     	
-    	List<E> resultList = list;
+    	List<E> resultList = new ArrayList<E>(list.size());
     	
     	leftList = split(leftList);
        	rightList = split(rightList);
@@ -46,7 +45,7 @@ public class MergeSort {
      * @param high - The highest index of the list.
      */
     public static <E extends Comparable<E>> List<E> merge(List<E> list, List<E> leftList, List<E> rightList) {
-    	List<E> result = list;
+    	List<E> resultList = new ArrayList<E>(leftList.size() + rightList.size());
     	int leftPointer = 0;
     	int rightPointer = 0;
     	int resultPointer = 0;
@@ -55,25 +54,26 @@ public class MergeSort {
     		
     		if (leftPointer  < leftList.size() && rightPointer < rightList.size()) {
     			if (leftList.get(leftPointer).compareTo(rightList.get(rightPointer)) < 0) {
-    				result.set(resultPointer, leftList.get(leftPointer));
+    				resultList.add(resultPointer, leftList.get(leftPointer));
     				resultPointer++;
     				leftPointer++;
     			} else {
-    				result.set(resultPointer, rightList.get(rightPointer));
+    				resultList.add(resultPointer, rightList.get(rightPointer));
     				resultPointer++;
     				rightPointer++;
     			}
-    		} else if (leftPointer < leftList.size()) {
-    			result.set(resultPointer, leftList.get(leftPointer));
+    		}
+    		if (leftPointer < leftList.size()) {
+    			resultList.add(resultPointer, leftList.get(leftPointer));
 				resultPointer++;
 				leftPointer++;
-    		} else if (rightPointer < leftList.size()) {
-    			result.set(resultPointer, rightList.get(rightPointer));
+    		} else if (rightPointer < rightList.size()) {
+    			resultList.add(resultPointer, rightList.get(rightPointer));
 				resultPointer++;
 				rightPointer++;
     		}
     	}
-    	return result;
+    	return resultList;
     }
 }
 
