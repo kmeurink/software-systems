@@ -55,7 +55,8 @@ public class MergeSort {
      * @param leftList - The left half of the original list.
      * @param rightList - The right half of the original list.
      */
-    public static <E extends Comparable<E>> List<E> merge(List<E> list, List<E> leftList, List<E> rightList) {
+    public static <E extends Comparable<E>> List<E> merge(List<E> list, 
+    		List<E> leftList, List<E> rightList) {
     	List<E> resultList = new ArrayList<E>(leftList.size() + rightList.size());
     	int leftPointer = 0;
     	int rightPointer = 0;
