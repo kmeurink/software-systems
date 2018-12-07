@@ -11,8 +11,10 @@ public class MergeSort {
     //Commands:
 	
     public static <E extends Comparable<E>>
-    	void mergesort(List<E> list) {
-    	split(list);
+    void mergesort(List<E> list) {
+    	List<E> newList = split(list);
+    	list.clear();
+    	list.addAll(newList);
     }
 	
     /**
@@ -20,22 +22,22 @@ public class MergeSort {
      * @param list - The original list.
      */
     public static <E extends Comparable<E>> List<E> split(List<E> list) {
+    	List<E> resultList = new ArrayList<E>();
+
     	//Check if the list contains less than two elements, at which point we continue.
     	if (list.size() <= 1) {
-    		return list;
+    		resultList.addAll(list);
+    		return resultList;
     	}
     	int mid = list.size() / 2;
     	List<E> leftList = list.subList(0, mid);
     	List<E> rightList = list.subList(mid, list.size());
     	
-    	List<E> resultList = new ArrayList<E>(list.size());
-    	
     	leftList = split(leftList);
        	rightList = split(rightList);
 
         //Call the merge method.
-    	resultList = merge(list, leftList, rightList);
-    	
+       	resultList = merge(list, leftList, rightList);
     	return resultList;
     }
     /**
@@ -62,8 +64,7 @@ public class MergeSort {
     				resultPointer++;
     				rightPointer++;
     			}
-    		}
-    		if (leftPointer < leftList.size()) {
+    		} else if (leftPointer < leftList.size()) {
     			resultList.add(resultPointer, leftList.get(leftPointer));
 				resultPointer++;
 				leftPointer++;
