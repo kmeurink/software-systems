@@ -30,6 +30,10 @@ public class Board {
     //@ ensures (\forall int i; 0 <= i & i < DIM * DIM; this.getField(i) == Mark.EMPTY);
     public Board() {
     	// TODO: implement, see exercise P-4.18
+    	for (int i = 0; i < DIM * DIM; i++) {
+    		fields = new Mark[DIM * DIM];
+    		this.setField(i, Mark.EMPTY);
+    	}
     }
 
     /**
@@ -92,6 +96,7 @@ public class Board {
     /*@pure*/
     public Mark getField(int i) {
     	// TODO: implement, see exercise P-4.18
+    	
         return null;
     }
 
@@ -109,6 +114,7 @@ public class Board {
     /*@pure*/
     public Mark getField(int row, int col) {
     	// TODO: implement, see exercise P-4.18
+    	
         return null;
     }
 
@@ -286,6 +292,7 @@ public class Board {
     //@ ensures this.getField(i) == m;
     public void setField(int i, Mark m) {
     	// TODO: implement, see exercise P-4.18
+    	fields[i] = m;
     }
 
     /**
