@@ -5,7 +5,7 @@ public class LinkedList<Element> {
     private /*@ spec_public @*/ int size;
     private Node first;
 
-    //@ ensures \result.size == 0;
+    //@ ensures size == 0;
     public LinkedList() {
         size = 0;
         first = null;
