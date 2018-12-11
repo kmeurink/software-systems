@@ -46,7 +46,11 @@ public class Board {
       @*/
     public Board deepCopy() {
     	// TODO: implement, see exercise P-4.18
-    	return null;
+    	Board newBoard = new Board();
+    	for (int i = 0; i < DIM * DIM; i++) {
+    		newBoard.setField(i, this.getField(i));
+    	}
+    	return newBoard;
     }
 
     /**
@@ -106,7 +110,6 @@ public class Board {
     /*@pure*/
     public Mark getField(int i) {
     	// TODO: implement, see exercise P-4.18
-    	System.out.println("Measured value: "+ this.fields[i]);
         return this.fields[i];
     }
 
@@ -124,7 +127,6 @@ public class Board {
     /*@pure*/
     public Mark getField(int row, int col) {
     	// TODO: implement, see exercise P-4.18
-    	System.out.println("Measured value: "+ this.fields[index(row, col)]);
         return this.fields[index(row, col)];
     }
 
@@ -253,12 +255,13 @@ public class Board {
     public boolean hasDiagonal(Mark m) {
     	// TODO: implement, see exercise P-4.18
     	boolean diag = false;
-    	for (int i = 0; i < DIM * DIM; i = i  + 3) {
-    		if (this.getField(i) == m && this.getField(i + 1) == m && this.getField(i + 2) == m) {
-    			diag = true;
-    		}
+    	if (this.getField(0) == m && this.getField(4) == m && this.getField(8) == m) {
+    		diag = true;
+    	} else if (this.getField(2) == m && this.getField(4) == m && this.getField(6) == m) {
+      		diag = true;
     	}
-        return diag;    }
+        return diag;
+    }
 
     /**
      * Checks if the mark m has won. A mark wins if it controls at
@@ -273,7 +276,7 @@ public class Board {
     /*@ pure */
     public boolean isWinner(Mark m) {
     	// TODO: implement, see exercise P-4.18
-        return false;
+        return (hasRow(m) || hasColumn(m) || hasDiagonal(m));
     }
 
     /**
