@@ -108,6 +108,7 @@ public class Game {
      */
     private void play() {
         // TODO: implement, see P-4.20
+    	update();
     }
 
     /**
