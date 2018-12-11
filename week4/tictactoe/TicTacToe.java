@@ -8,7 +8,10 @@ package ss.week4.tictactoe;
  * @version $Revision: 1.4 $
  */
 public class TicTacToe {
+	
     public static void main(String[] args) {
         // TODO: implement, see P-4.21
+    	Game game = new Game(new HumanPlayer(args[0], Mark.OO), new HumanPlayer(args[1], Mark.XX));
+    	game.start();
     }
 }
