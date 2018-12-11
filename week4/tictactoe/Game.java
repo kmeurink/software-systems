@@ -108,7 +108,13 @@ public class Game {
      */
     private void play() {
         // TODO: implement, see P-4.20
-    	update();
+    	this.update();
+    	while (!board.hasWinner() && !board.isFull()) {
+    		current = (current + 1) % NUMBER_PLAYERS;
+    		players[current].makeMove(this.board);
+        	this.update();
+    	}
+    	this.printResult();
     }
 
     /**
