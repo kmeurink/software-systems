@@ -1,6 +1,9 @@
 package ss.week5;
 
-import ss.week4.tictactoe.*;
+import ss.week4.tictactoe.Board;
+import ss.week4.tictactoe.Game;
+import ss.week4.tictactoe.Mark;
+import ss.week4.tictactoe.Player;
 /**
  * Class for maintaining a computer player in Tic Tac Toe. Module 2 lab assignment
  */

@@ -180,14 +180,15 @@ public class Board {
     public boolean isFull() {
     	// TODO: implement, see exercise P-4.18
     	boolean full = false;
+    	int count = 0;
     	for (int i = 0; i < DIM * DIM; i++) {
-    		if (fields[i] != Mark.EMPTY) {
-        		full = true;
-        	} else {
-        		full = false;
-        	}   
+    		if (fields[i] == Mark.EMPTY) {
+        		count++;
+        	} //else {
+        	//	full = false;
+        	//}   
     	}
-        return full;
+        return count == 0;
     }
 
     /**
@@ -341,9 +342,7 @@ public class Board {
     //@ ensures this.getField(i) == m;
     public void setField(int i, Mark m) {
     	// TODO: implement, see exercise P-4.18
-    	System.out.println("Initial value: " + this.fields[i]);
     	this.fields[i] = m;
-    	System.out.println("Changed value: " + this.fields[i]);
     }
 
     /**

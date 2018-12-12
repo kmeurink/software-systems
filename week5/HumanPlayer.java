@@ -1,8 +1,10 @@
 package ss.week5;
 
 import java.util.Scanner;
-import ss.week4.tictactoe.*;
-/**
+import ss.week4.tictactoe.Board;
+import ss.week4.tictactoe.Game;
+import ss.week4.tictactoe.Mark;
+import ss.week4.tictactoe.Player;/**
  * Class for maintaining a human player in Tic Tac Toe. Module 2 lab assignment
  * 
  * @author Theo Ruys
