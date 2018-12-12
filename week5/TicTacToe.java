@@ -15,8 +15,16 @@ public class TicTacToe {
 	
     public static void main(String[] args) {
         // TODO: implement, see P-4.21
-    	Strategy s = new NaiveStrategy();
-    	Player p1 = new HumanPlayer(args[0], Mark.XX);
+    	Strategy s;
+    	if (args[1].equals("-N")) {
+    		s = new NaiveStrategy();
+    	} else if (args[1].equals("-S")) {
+    		s = new SmartStrategy();
+    	} else {
+    		s = new NaiveStrategy();
+    	}
+    	//Strategy s = new NaiveStrategy();
+    	Player p1 = new ComputerPlayer(Mark.XX, s);//HumanPlayer(args[0], Mark.XX);
     	Player p2 = new ComputerPlayer(Mark.OO, s);
     	Game game = new Game(p1, p2);
     	game.start();

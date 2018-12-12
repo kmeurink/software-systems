@@ -33,7 +33,7 @@ public class Board {
     	fields = new Mark[DIM * DIM];
     	for (int i = 0; i < DIM * DIM; i++) {
     		this.setField(i, Mark.EMPTY);
-        	System.out.println("Field value: " + i + " " + this.fields[i]);
+        	//System.out.println("Field value: " + i + " " + this.fields[i]);
     	}
     }
 

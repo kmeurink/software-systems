@@ -12,7 +12,7 @@ public class NaiveStrategy implements Strategy{
 	private String name;
 	
 	public NaiveStrategy() {
-	this.name = "Naive";	
+		this.name = "Naive";	
 	}
 	
 	/**
