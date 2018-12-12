@@ -51,6 +51,12 @@ public class MapUtil {
     	}
         return loose == 0;
     }
+    
+    /**
+     * 
+     * @param map - the created map
+     * @return the inverse of the original map.
+     */
     public static <K, V> Map<V, Set<K>> inverse(Map<K, V> map) {
         // TODO: implement, see exercise P-5.3
     	Map<V, Set<K>> inverseMap = new HashMap<>();
@@ -68,6 +74,13 @@ public class MapUtil {
         
         return inverseMap;
 	}
+    
+    /**
+     * 
+     * @param map - the created map
+     * @return the inverse of the original map.
+     */
+    //@ requires isOneOnOne(map) == true && isSurjectiveOnRange(Map<K, V> map, Set<V> range) == true;
 	public static <K, V> Map<V, K> inverseBijection(Map<K, V> map) {
         // TODO: implement, see exercise P-5.3
     	Map<V, K> inverseMap = new HashMap<>();
@@ -86,12 +99,48 @@ public class MapUtil {
         }
         return inverseMap;
 	}
+	/**
+	 * 
+	 * @param f - the first map.
+	 * @param g - the second map
+	 * @return true if the maps can be composed.
+	 */
+	//@ requires f != null && g != null;
 	public static <K, V, W> boolean compatible(Map<K, V> f, Map<V, W> g) {
         // TODO: implement, see exercise P-5.4
-        return false;
+		int count = 0;
+		int notComp = 0;
+        Set<V> keys2 = g.keySet();
+        Set<K> keys1 = f.keySet();
+        for (K k1 : keys1) {
+        	for (V v1 : keys2) {
+        		if (f.get(k1).equals(v1)) {
+        			count++;
+        		}
+        	}
+        	if (count == 0) {
+        		notComp++;
+        	}
+        	count = 0;
+        }
+        return !(notComp > 0);
 	}
 	public static <K, V, W> Map<K, W> compose(Map<K, V> f, Map<V, W> g) {
         // TODO: implement, see exercise P-5.5
-        return null;
+		if (compatible(f, g)) {
+	    	Map<K, W> composedMap = new HashMap<>();
+	        Set<K> keys1 = f.keySet();
+	        Set<V> keys2 = g.keySet();
+	    	for (K k1 : keys1) {
+	    		for (V v2 : keys2) {
+	    			if (f.get(k1).equals(v2)) {
+	    				composedMap.put(k1, g.get(v2));
+	    			}
+	      		}
+	    		
+	    	}
+	        return composedMap;
+		}
+		return null;
 	}
 }
