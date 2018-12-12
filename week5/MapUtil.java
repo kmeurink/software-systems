@@ -33,10 +33,23 @@ public class MapUtil {
     	}
         return true;
     }
+    /**
+     * 
+     * @param map - the map created
+     * @param range - the range that must be examined
+     * @return true if all values have keys attached.
+     */
+    //@ ensures \result == true || \result == false;
     public static <K, V> 
            boolean isSurjectiveOnRange(Map<K, V> map, Set<V> range) {
         // TODO: implement, see exercise P-5.2
-        return false;
+    	int loose = 0;
+       	for (V v : range) {
+    		if (!map.containsValue(v)) {
+    			loose++;
+    		}
+    	}
+        return loose == 0;
     }
     public static <K, V> Map<V, Set<K>> inverse(Map<K, V> map) {
         // TODO: implement, see exercise P-5.3
