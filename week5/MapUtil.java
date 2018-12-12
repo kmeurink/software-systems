@@ -53,11 +53,38 @@ public class MapUtil {
     }
     public static <K, V> Map<V, Set<K>> inverse(Map<K, V> map) {
         // TODO: implement, see exercise P-5.3
-        return null;
+    	Map<V, Set<K>> inverseMap = new HashMap<>();
+        Set<K> keys = map.keySet();
+        Collection<V> values = map.values();
+        for (V v : values) {
+        	Set<K> set = new HashSet<>();
+        	for (K k : keys) {
+        		if (map.get(k).equals(v)) {
+        			set.add(k);
+        		}
+        	}
+        	inverseMap.put(v, set);
+        }
+        
+        return inverseMap;
 	}
 	public static <K, V> Map<V, K> inverseBijection(Map<K, V> map) {
         // TODO: implement, see exercise P-5.3
-        return null;
+    	Map<V, K> inverseMap = new HashMap<>();
+        Set<K> keys = map.keySet();
+        Collection<V> values = map.values();
+        //To check if it is surjective and injective, the range needs to be added as well.
+        //This is done by creating an additional set, containing the values from map.
+        Set<V> range = new HashSet<>();
+        for (V vv : values) {
+        	range.add(vv);
+        }
+        if (isOneOnOne(map) && isSurjectiveOnRange(map, range)) {
+        	for (K k : keys) {
+               	inverseMap.put(map.get(k), k);
+        	}
+        }
+        return inverseMap;
 	}
 	public static <K, V, W> boolean compatible(Map<K, V> f, Map<V, W> g) {
         // TODO: implement, see exercise P-5.4
