@@ -80,7 +80,7 @@ public class MapUtil {
      * @param map - the created map
      * @return the inverse of the original map.
      */
-    //@ requires isOneOnOne(map) == true && isSurjectiveOnRange(Map<K, V> map, Set<V> range) == true;
+    //@ requires isOneOnOne(Map<K, V> map) == true && isSurjectiveOnRange(Map<K, V> map, Set<V> range) == true;
 	public static <K, V> Map<V, K> inverseBijection(Map<K, V> map) {
         // TODO: implement, see exercise P-5.3
     	Map<V, K> inverseMap = new HashMap<>();
