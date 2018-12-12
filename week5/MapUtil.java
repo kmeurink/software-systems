@@ -1,14 +1,37 @@
 package ss.week5;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
 public class MapUtil {
+	
+	/**
+	 * 
+	 * @param map - the map created.
+	 * @return true- if every value is only referenced by one key. 
+	 */
+	//@ ensures \result == true || \result == false;
     public static <K, V> boolean isOneOnOne(Map<K, V> map) {
         // TODO: implement, see exercise P-5.1
-        return false;
+    	int count = 0;
+    	V answer;
+    	Collection<K> key = map.keySet();
+    	for (K k1 : key) {
+    		answer = map.get(k1);
+    		for (K k2 : key) {
+    			if (map.get(k2).equals(answer)) {
+    				count++;
+    			}
+    		}
+    		if (count > 1) {
+    			return false;
+    		}
+    		count = 0;
+    	}
+        return true;
     }
     public static <K, V> 
            boolean isSurjectiveOnRange(Map<K, V> map, Set<V> range) {
