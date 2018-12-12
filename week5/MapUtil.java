@@ -125,6 +125,14 @@ public class MapUtil {
         }
         return !(notComp > 0);
 	}
+	
+	/**
+	 * 
+	 * @param f - the first map.
+	 * @param g - the second map.
+	 * @return The composed map
+	 */
+	//@ requires (compatible(f, g)) == true;
 	public static <K, V, W> Map<K, W> compose(Map<K, V> f, Map<V, W> g) {
         // TODO: implement, see exercise P-5.5
 		if (compatible(f, g)) {
@@ -137,7 +145,6 @@ public class MapUtil {
 	    				composedMap.put(k1, g.get(v2));
 	    			}
 	      		}
-	    		
 	    	}
 	        return composedMap;
 		}
