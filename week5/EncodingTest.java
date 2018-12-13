@@ -11,7 +11,12 @@ import org.apache.commons.codec.binary.Hex;
 public class EncodingTest {
     public static void main(String[] args) throws DecoderException {
         String input = "Hello Big World";
+        String encodedInput = Hex.encodeHexString(input.getBytes());
+        System.out.println("The encoded input is: " + encodedInput);
+        byte[] byteValue = Hex.decodeHex(encodedInput);
+        String decodedInpunt = new String(byteValue);
+        System.out.println("The decoded input is: " + decodedInpunt);
+        System.out.println("The decoded seperated input is: " + decodedInpunt.toCharArray());
 
-        System.out.println(Hex.encodeHexString(input.getBytes()));
     }
 }

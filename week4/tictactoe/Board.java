@@ -63,7 +63,7 @@ public class Board {
     /*@pure*/
     public int index(int row, int col) {
     	// TODO: implement, see exercise P-4.18
-    	int index = row * 3 + col; 
+    	int index = row * DIM + col; 
         return index;
     }
 
