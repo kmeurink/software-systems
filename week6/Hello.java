@@ -7,13 +7,17 @@ import java.util.Scanner;
  */
 public class Hello {
 	Scanner in = new Scanner(System.in);
+	boolean end = false;
 	
 	public Hello() {
-		System.out.print("What is your name? ");
-		String name = in.next();
-		System.out.print("Hello " + name);
-		System.out.flush();
-
+		while (!end) {
+			System.out.println("What is your name? ");
+			String name = in.nextLine();
+			if (in.nextLine().isEmpty()) {
+				end = true;
+			}
+			System.out.println("Hello " + name + " ");
+		}
 	}
 
 	
