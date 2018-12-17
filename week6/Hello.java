@@ -10,13 +10,16 @@ public class Hello {
 	boolean end = false;
 	
 	public Hello() {
+		//Usage of a boolean to determine if it still needs to check.
 		while (!end) {
 			System.out.println("What is your name? ");
 			String name = in.nextLine();
-			if (in.nextLine().isEmpty()) {
+			if (name.isEmpty()) {
 				end = true;
 			}
-			System.out.println("Hello " + name + " ");
+			if (!end) {
+				System.out.println("Hello " + name + " ");
+			}
 		}
 	}
 
