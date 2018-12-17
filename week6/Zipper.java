@@ -16,11 +16,18 @@ public class Zipper {
     
     public static String zip2(String s1, String s2) {
     	//Added exceptions:
-    	if (s1.equals(null) || s2.equals(null)) {
-    		throw new TooFewArgumentsException();
-    	} else if (s1.length() != s2.length()) {
-    		throw new ArgumentLengthsDifferException(s1.length(), s2.length());
+    	try {
+        	if (s1.equals(null) || s2.equals(null)) {
+        		throw new TooFewArgumentsException();
+        	} else if (s1.length() != s2.length()) {
+        		throw new ArgumentLengthsDifferException(s1.length(), s2.length());
+        	}
+    	} catch (TooFewArgumentsException e) {
+            System.out.println(e.getMessage()); 
+    	} catch (ArgumentLengthsDifferException e) {
+            System.out.println(e.getMessage()); 
     	}
+
     	
         String result = "";
         for (int i = 0; i < s1.length(); i++) {
