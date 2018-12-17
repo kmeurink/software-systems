@@ -13,20 +13,23 @@ public class Zipper {
         }
         return result;
     }
-    
-    public static String zip2(String s1, String s2) {
+    /*
+     * New method replacing zip and adding exceptions to check for incorrect arguments.
+     */
+    public static String zip2(String s1, String s2) throws TooFewArgumentsException,
+    		ArgumentLengthsDifferException {
     	//Added exceptions:
-    	try {
-        	if (s1.equals(null) || s2.equals(null)) {
-        		throw new TooFewArgumentsException();
-        	} else if (s1.length() != s2.length()) {
-        		throw new ArgumentLengthsDifferException(s1.length(), s2.length());
-        	}
-    	} catch (TooFewArgumentsException e) {
-            System.out.println(e.getMessage()); 
-    	} catch (ArgumentLengthsDifferException e) {
-            System.out.println(e.getMessage()); 
-    	}
+    	//try {
+       	if (s1 == null || s2 == null) {
+       		throw new TooFewArgumentsException();
+       	} else if (s1.length() != s2.length()) {
+       		throw new ArgumentLengthsDifferException(s1.length(), s2.length());
+       	}
+    	//} catch (TooFewArgumentsException e) {
+        //    System.out.println(e.getMessage()); 
+    	//} catch (ArgumentLengthsDifferException e) {
+        //    System.out.println(e.getMessage()); 
+    	
 
     	
         String result = "";
@@ -39,15 +42,20 @@ public class Zipper {
     
 
     public static void main(String[] args) {
-    	String s1 = args[0];//String s1 = args.length >= 1 ? args[0] : null;
-    	String s2 = args[1];//String s2 = args.length >= 2 ? args[1] : null;
+    	String s1 = args[0]; //String s1 = args.length >= 1 ? args[0] : null;
+    	String s2 = args[1]; //String s2 = args.length >= 2 ? args[1] : null;
         //if (s1 == null || s2 == null) {
         //    System.out.println("error: too few command line arguments");
         //} else if (s1.length() != s2.length()) {
         //    System.out.println("error: length of command line arguments "
         //            + "differ (" + s1.length() + ", " + s2.length() + ")");
         //} else {
-            System.out.println(zip2(s1, s2));
+        try {
+			System.out.println(zip2(s1, s2));
+		} catch (TooFewArgumentsException | ArgumentLengthsDifferException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		}
         //}
     }
 }
