@@ -1,5 +1,7 @@
 package ss.week6.cards;
+import java.io.*;
 
+import ss.week6.Hello;
 public class Card
 {
 
@@ -82,7 +84,7 @@ public class Card
 	   requires isValidSuit(s1) && isValidSuit(s2);
 	 */
 	/**
-	 * Tests if a suit is value of a suit is less than the value of
+	 * Tests if the value of a suit is less than the value of
 	 * another suit following the order.
 	 * CLUBS < DIAMONDS < HEARTS < SPADES.
 	 */
@@ -117,7 +119,7 @@ public class Card
        requires isValidRank(r1) && isValidRank(r2);
      */
 	/**
-	 * Tests if one rank directly follows the other accroding to
+	 * Tests if one rank directly follows the other according to
 	 * '2' < '3' < ... < TEN < JACK < QUEEN < KING < ACE.
 	 */
 	public static boolean isRankFollowing(char r1, char r2) {
@@ -136,6 +138,13 @@ public class Card
 			result = r2 == r1 + 1;
 		}
 		return result;
+	}
+	
+	/**
+	 * Write the description of the object to the PrintWriter.
+	 */
+	public void write(PrintWriter writer) {
+		writer.print(this.toString());
 	}
 	
 	// ---- instance variables -----------------------------------
@@ -299,5 +308,10 @@ public class Card
 	 */
 	public boolean isInRankBefore(Card card) {
 		return isRankFollowing(this.getRank(), card.getRank());
+	}
+	
+	public static void main(String[] args) {
+		PrintWriter writer = new PrintWriter(cardfile.txt);
+		new Card();
 	}
 }
