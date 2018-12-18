@@ -35,7 +35,7 @@ public class CardTest {
             PrintWriter writer = new PrintWriter(new FileWriter(PATH + "card.txt"));
             card.write(writer);
             writer.close();
-
+            
             BufferedReader reader = new BufferedReader(new FileReader(PATH + "card.txt"));
             Card card2 = Card.read(reader);
             reader.close();

@@ -1,7 +1,7 @@
 package ss.week6.cards;
 import java.io.*;
+import java.util.Scanner;
 
-import ss.week6.Hello;
 public class Card {
 	
 	public static void main(String[] args) {
@@ -174,6 +174,33 @@ public class Card {
 	public void write(PrintWriter writer) {
 		writer.println(this.toString());
 
+	}
+	
+	/**
+	 * P6.5
+	 * Read and create a new Card object from a file.
+	 */
+	public static Card read(BufferedReader in) throws EOFException {
+		String card = null;
+		try {
+			card = in.readLine();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Scanner check = new Scanner(card);
+		char[] suit = check.next().toUpperCase().toCharArray();
+		char[] rank = check.next().toUpperCase().toCharArray();
+		if (isValidSuit(suit[0])) {
+			if (isValidRank(rank[0])) {
+				check.close();
+				return new Card(suit[0], rank[0]);
+			}
+		} else {
+			check.close();
+			return null;
+		}
+		check.close();
+		return null;
 	}
 	
 	// ---- instance variables -----------------------------------
