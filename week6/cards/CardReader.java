@@ -28,7 +28,11 @@ public class CardReader {
 	private static Card read() throws EOFException {
 		if (reader != null) {
 			return Card.read(reader);
-		} else if (dataIn != null) {
+		} //else {
+		//	return null;
+		//}
+		
+     	else if (dataIn != null) {
 			return Card.read(dataIn);
 		} else {
 			return Card.read(objectIn);
