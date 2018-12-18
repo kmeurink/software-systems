@@ -258,6 +258,60 @@ public class Card {
 		return null;
 	}
 	
+	/**
+	 * P6.8
+	 * Read and write a new card object using ObjectInput and ObjectOutput.
+	 * Is exactly the same as the data channels, so ask for more explanation.
+	 */
+	public void write(ObjectOutput out) {
+		try {
+			out.writeChars(this.toString());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+	public static Card read(ObjectInput in) throws EOFException {
+		char suit = 'b';
+		char rank = 'b';
+		boolean suitDone = false;
+		boolean rankDone = false;
+		char temp;
+		int count = 0;
+		try {
+			while (suitDone == false) {
+				temp = in.readChar();
+				if (temp == ' ') {
+					suitDone = true;
+				} else if (count == 0) {
+					suit = Character.toUpperCase(temp);
+					count++;
+				}
+			}
+			count = 0;
+			while (suitDone == true && rankDone == false) {
+				temp = in.readChar();
+				if (count == 0) {
+					rank = Character.toUpperCase(temp);
+					rankDone = true;
+					count++;				
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		if (isValidSuit(suit)) {
+			if (isValidRank(rank)) {
+				return new Card(suit, rank);
+			}
+		} else {
+			return null;
+		}
+		return null;
+	}
+	
 	// ---- instance variables -----------------------------------
 
 	/*@
