@@ -4,6 +4,23 @@ import java.io.*;
 import ss.week6.Hello;
 public class Card
 {
+	
+	public static void main(String[] args) throws FileNotFoundException {
+		String file = "TestFile.txt";
+		PrintWriter writer;
+		writer = new PrintWriter(file);
+		Card c1 = new Card(DIAMONDS, '9');
+		Card c2 = new Card(SPADES, '4');
+		Card c3 = new Card(SPADES, KING);
+		Card c4 = new Card(DIAMONDS, JACK);
+		Card c5 = new Card(HEARTS, ACE);
+		c1.write(writer);
+		c2.write(writer);
+		c3.write(writer);
+		c4.write(writer);
+		c5.write(writer);
+		writer.close();
+	}
 
 	// ---- constants -----------------------------------
 
@@ -141,10 +158,12 @@ public class Card
 	}
 	
 	/**
+	 * P6.4
 	 * Write the description of the object to the PrintWriter.
 	 */
 	public void write(PrintWriter writer) {
-		writer.print(this.toString());
+		writer.println(this.toString());
+
 	}
 	
 	// ---- instance variables -----------------------------------
@@ -308,10 +327,5 @@ public class Card
 	 */
 	public boolean isInRankBefore(Card card) {
 		return isRankFollowing(this.getRank(), card.getRank());
-	}
-	
-	public static void main(String[] args) {
-		PrintWriter writer = new PrintWriter(cardfile.txt);
-		new Card();
 	}
 }

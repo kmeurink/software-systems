@@ -53,7 +53,6 @@ public class Zipper {
         try {
 			System.out.println(zip2(s1, s2));
 		} catch (TooFewArgumentsException | ArgumentLengthsDifferException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		}
         //}

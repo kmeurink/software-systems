@@ -16,8 +16,7 @@ public class Hello {
 			String name = in.nextLine();
 			if (name.isEmpty()) {
 				end = true;
-			}
-			if (!end) {
+			} else {
 				System.out.println("Hello " + name + " ");
 			}
 		}
