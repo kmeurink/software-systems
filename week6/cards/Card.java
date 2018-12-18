@@ -2,13 +2,23 @@ package ss.week6.cards;
 import java.io.*;
 
 import ss.week6.Hello;
-public class Card
-{
+public class Card {
 	
-	public static void main(String[] args) throws FileNotFoundException {
-		String file = "TestFile.txt";
-		PrintWriter writer;
-		writer = new PrintWriter(file);
+	public static void main(String[] args) {
+		String file;
+		PrintWriter writer = null;
+		//Make sure that when the file is not found and exception is thrown.
+			//If no filename is given(argument length == 0) write to System.out.
+		if (args.length != 0) {
+			file = args[0];
+			try {
+				writer = new PrintWriter(file);
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+		} else {
+			writer = new PrintWriter(System.out);
+		}
 		Card c1 = new Card(DIAMONDS, '9');
 		Card c2 = new Card(SPADES, '4');
 		Card c3 = new Card(SPADES, KING);
@@ -19,8 +29,8 @@ public class Card
 		c3.write(writer);
 		c4.write(writer);
 		c5.write(writer);
-		writer.close();
-	}
+		writer.close();	
+	} 
 
 	// ---- constants -----------------------------------
 
