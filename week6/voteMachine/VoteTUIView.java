@@ -67,17 +67,17 @@ public class VoteTUIView implements VoteView{
             if (in.hasNextLine()) {
             	prompt = in.next();
             	switch (prompt) {
-            		case "VOTE": 
+            		case "VOTE": vm.vote(in.next());
             			break;
-            		case "ADD":
+            		case "ADD": vm.addParty(in.next());
             			break;
-            		case "VOTES":
+            		case "VOTES": this.showVotes(vm.getVotes());
             			break;
-            		case "PARTIES":
+            		case "PARTIES": this.showParties(vm.getParties());
             			break;
-            		case "EXIT":
+            		case "EXIT": voting = false;
             			break;
-            		case "HELP":
+            		case "HELP": this.showError("Error, something is malfunctioning");
             			break;
             		default:
             			System.out.println("Sorry that's not one of the options");
