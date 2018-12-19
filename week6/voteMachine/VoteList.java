@@ -39,7 +39,6 @@ public class VoteList extends Observable {
 	 * @param vote - the vote for a specific party.
 	 */
 	public void addVote(String vote) {
-		Set<String> parties = voteMap.keySet();
 		if (voteMap.containsKey(vote)) {
 			voteMap.replace(vote, voteMap.get(vote), voteMap.get(vote) + 1);
 		} else {
