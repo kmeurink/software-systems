@@ -13,11 +13,11 @@ import java.util.Scanner;
  */
 public class VoteTUIView implements VoteView{
 	//Named constants:
-	
+	private VoteMachine vm;
 	
 	//Constructor:
-	public VoteTUIView() {
-		
+	public VoteTUIView(VoteMachine voteMachine) {
+		 this.vm = voteMachine;
 	}
 	//Queries:
 	
