@@ -2,6 +2,7 @@ package ss.week6.voteMachine;
 
 import java.util.List;
 import java.util.Map;
+import ss.week6.voteMachine.gui.*;
 
 /**
  * Controller class for the voting machine.
@@ -50,7 +51,7 @@ public class VoteMachine {
 	 * Method to start the machine, also starting its TUI/GUI.
 	 */
 	public void start() {
-		VoteTUIView view = new VoteTUIView(this);
+		VoteView view = new VoteGUIView(this);//VoteTUIView view = new VoteTUIView(this);
 		partyList.addObserver(view);
 		voteList.addObserver(view);
 		view.start();
