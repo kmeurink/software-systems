@@ -2,13 +2,14 @@ package ss.week6.voteMachine;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
 /**
  * A class for storing all the different electable parties.
  * @author kester.meurink
  *
  */
-public class PartyList {
+public class PartyList extends Observable {
 	//Named constants:
 	private List<String> partyList = new ArrayList<>();
 	
@@ -51,6 +52,8 @@ public class PartyList {
 	public void addParty(String party) {
 		if (!hasParty(party)) {
 			this.partyList.add(party);
+			setChanged();
+			notifyObservers("party");
 		}
 	}
 	

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Observable;
+import java.util.Observer;
 import java.util.Scanner;
 
 /**
@@ -11,7 +12,7 @@ import java.util.Scanner;
  * @author kester.meurink
  *
  */
-public class VoteTUIView implements VoteView{
+public class VoteTUIView implements VoteView, Observer{
 	//Named constants:
 	private VoteMachine vm;
 	
@@ -92,7 +93,12 @@ public class VoteTUIView implements VoteView{
 	 */
 	@Override
 	public void update(Observable o, Object arg) {
-		
+		if (arg.equals("vote")) {
+			System.out.print("A vote was added \n");
+		}
+		if (arg.equals("party")) {
+			System.out.print("A party was added \n");
+		}
 	}
 
 

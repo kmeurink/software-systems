@@ -1,18 +1,17 @@
 package ss.week6.voteMachine;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.Observable;
 
 /**
  * A class for storing all the votes made for the parties.
  * @author kester.meurink
  *
  */
-public class VoteList {
+public class VoteList extends Observable {
 	//Named constants:
-	Map<String, Integer> voteMap = new HashMap<String, Integer>(); 
+	private Map<String, Integer> voteMap = new HashMap<>(); 
 	
 	
 	//Constructor:
@@ -44,6 +43,8 @@ public class VoteList {
 		} else {
 			voteMap.put(vote, 1);
 		}
+		setChanged();
+		notifyObservers("vote");
 	}
 
 }

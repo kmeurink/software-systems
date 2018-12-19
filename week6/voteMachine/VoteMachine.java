@@ -51,6 +51,8 @@ public class VoteMachine {
 	 */
 	public void start() {
 		VoteTUIView view = new VoteTUIView(this);
+		partyList.addObserver(view);
+		voteList.addObserver(view);
 		view.start();
 		
 	}
@@ -70,6 +72,9 @@ public class VoteMachine {
 	 */
 	public void vote(String party) {
 		voteList.addVote(party);
+		if (!partyList.getParties().contains(party)) {
+			partyList.addParty(party);
+		}
 	}
 
 }
