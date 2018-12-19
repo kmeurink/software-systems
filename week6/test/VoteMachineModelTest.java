@@ -53,3 +53,4 @@ public class VoteMachineModelTest {
         assertEquals(1, (int) voteList.getVotes().get(PARTY1));
     }
 }
+
