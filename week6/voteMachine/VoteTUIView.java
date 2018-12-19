@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Scanner;
+import java.util.Set;
 
 /**
  * UI view for the voting machine system.
@@ -27,9 +28,9 @@ public class VoteTUIView implements VoteView, Observer{
 	 */
 	@Override
 	public void showVotes(Map<String, Integer> votes) {
-		List<String> parties = new ArrayList<>();
+		Set<String> parties = votes.keySet();
 		for (String v : parties) {
-			System.out.println(v + " - " + votes.get(v) + "votes" + "\n");
+			System.out.println(v + " - " + votes.get(v) + " votes" + "\n");
 		}
 	}
 	
@@ -64,7 +65,7 @@ public class VoteTUIView implements VoteView, Observer{
 		while (voting) {
 			String prompt;
 			System.out.println("Please choose one of the following options: ");
-			System.out.println("VOTE [party], ADD PARTY [party], VOTES, PARTIES, EXIT, HELP");
+			System.out.println("VOTE [party], ADD [party], VOTES, PARTIES, EXIT, HELP");
             if (in.hasNextLine()) {
             	prompt = in.next();
             	switch (prompt) {
