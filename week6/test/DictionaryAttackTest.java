@@ -17,7 +17,7 @@ import static org.junit.Assert.assertTrue;
  */
 public class DictionaryAttackTest {
 
-    /** Testvariabele for a <tt>DictionaryAttack</tt> object. */
+    /** Testvariable for a <tt>DictionaryAttack</tt> object. */
     private DictionaryAttack dictionaryAttack;
 
     /** Path to the text file */
