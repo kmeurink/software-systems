@@ -1,6 +1,8 @@
 package ss.week6.dictionaryattack;
 
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 
 public class DictionaryAttack {
@@ -12,12 +14,18 @@ public class DictionaryAttack {
 	 * username: encodedpassword
 	 * 
 	 * After calling this method, the passwordMap class variable should be
-	 * filled withthe content of the file. The key for the map should be
+	 * filled with the content of the file. The key for the map should be
 	 * the username, and the password hash should be the content.
 	 * @param filename
 	 */
 	public void readPasswords(String filename) {
-		// To implement        
+		Scanner in = new Scanner(filename);
+		while (in.hasNextLine()) {
+			String total = in.nextLine();
+			String[] parts = total.split(" ");
+			passwordMap.put(parts[0], parts[1]);
+		}
+		in.close();
 	}
 
 	/**

@@ -32,7 +32,7 @@ public class DictionaryAttackTest {
             e.printStackTrace();
         }
     }
-
+    
     /**
      * Test for <tt>getPasswordHash</tt>
      */
