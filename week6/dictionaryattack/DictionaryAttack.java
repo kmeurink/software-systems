@@ -35,9 +35,12 @@ public class DictionaryAttack {
 			//String total;
 			//String[] parts = new String[2];
 			while (in.hasNextLine()) {
-				//total = in.nextLine();
+			String user = in.next();
+			String pass = in.next();
+			user.replace(":", "");
+				//total = in.nextLine();		
 				//parts = total.split(": ");
-				//passwordMap.put(parts[0], parts[1]);
+			passwordMap.put(user, pass);	//passwordMap.put(parts[0], parts[1]);
 			}
 			in.close();
 		} catch (FileNotFoundException e) {
