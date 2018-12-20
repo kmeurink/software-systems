@@ -125,6 +125,13 @@ public class DictionaryAttack {
 		System.out.println("Total passwords recovered: " + count);
 		
 	}
+	
+	public void doBruteForce(String hashPass) {
+		
+	}
+	
+	
+	
 	public static void main(String[] args) throws IOException {
 		DictionaryAttack da = new DictionaryAttack();
 		da.readPasswords("LeakedPasswords.txt");
