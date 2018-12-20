@@ -29,19 +29,20 @@ public class DictionaryAttack {
 	 * @param filename
 	 */
 	public void readPasswords(String filename) throws IOException {
-		File file = new File(filename);
+		//File file = new File(filename);
 		try {
-			Scanner in = new Scanner(file);
+			Scanner in = new Scanner(new BufferedReader(new FileReader(filename)));
+			//String total;
+			//String[] parts = new String[2];
 			while (in.hasNextLine()) {
-				String total = in.nextLine();
-				String[] parts = total.split(" ");
-				passwordMap.put(parts[0], parts[1]);
+				//total = in.nextLine();
+				//parts = total.split(": ");
+				//passwordMap.put(parts[0], parts[1]);
 			}
 			in.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	/**
@@ -62,14 +63,16 @@ public class DictionaryAttack {
 		return null;
    	}
 	/**
-	 * Checks the password for the user the password list. If the user
+	 * Checks the password for the user in the password list. If the user
 	 * does not exist, returns false.
 	 * @param user
 	 * @param password
 	 * @return whether the password for that user was correct.
 	 */
 	public boolean checkPassword(String user, String password) {
-        // To implement
+		if (passwordMap.get(user).equals(getPasswordHash(password))) {
+			return true;
+		}
 		return false;
 	}
 
