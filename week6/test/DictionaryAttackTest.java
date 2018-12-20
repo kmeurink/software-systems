@@ -23,29 +23,21 @@ public class DictionaryAttackTest {
     /** Path to the text file */
     private static final String PATH = ""; //Your path to the test folder
 
-//    @Before
-//    public void setUp() {
-//        dictionaryAttack = new DictionaryAttack();
-//        try {
-//            dictionaryAttack.readPasswords(PATH + "LeakedPasswords.txt");
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-    
-    /**
-     * Test for <tt>getPasswordHash</tt>
-     */
-    @Test
-    public void testGetPasswordHash() {
-    	
+    @Before
+    public void setUp() {
         dictionaryAttack = new DictionaryAttack();
         try {
             dictionaryAttack.readPasswords(PATH + "LeakedPasswords.txt");
         } catch (IOException e) {
             e.printStackTrace();
         }
-    	
+    }
+    
+    /**
+     * Test for <tt>getPasswordHash</tt>
+     */
+    @Test
+    public void testGetPasswordHash() {
         assertEquals("5f4dcc3b5aa765d61d8327deb882cf99", dictionaryAttack.getPasswordHash("password"));
     }
 
@@ -54,14 +46,6 @@ public class DictionaryAttackTest {
      */
     @Test
     public void testCheckPassword() {
-    	
-        dictionaryAttack = new DictionaryAttack();
-        try {
-            dictionaryAttack.readPasswords(PATH + "LeakedPasswords.txt");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    	
         assertTrue(dictionaryAttack.checkPassword("katrine", "spongebob"));
     }
 
