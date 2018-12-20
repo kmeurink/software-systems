@@ -3,6 +3,7 @@ package ss.week6.dictionaryattack;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 
 import org.apache.commons.codec.binary.Hex;
 
@@ -94,10 +95,10 @@ public class DictionaryAttack {
 			Scanner in = new Scanner(file);
 			String passWord;
 			String hashPass;
-			while (in.hasNextLine()) {
-				passWord = in.nextLine();		
+			while (in.hasNext()) {
+				passWord = in.next();		
 				hashPass = getPasswordHash(passWord);
-				passwordMap.put(hashPass, passWord);
+				hashDictionary.put(hashPass, passWord);
 			}
 			in.close();
 		} catch (FileNotFoundException e) {
@@ -110,12 +111,27 @@ public class DictionaryAttack {
 	 * Do the dictionary attack.
 	 */
 	public void doDictionaryAttack() {
-		// To implement
+		Set<String> users = passwordMap.keySet();
+		Set<String> passes = hashDictionary.keySet();
+		int count = 0;
+		for (String u : users) {
+			for (String p : passes) {
+				if (passwordMap.get(u).equals(p)) {
+					System.out.println("User: " + u + ": Password: " + hashDictionary.get(p));
+					count++;
+				}
+			}
+		}
+		System.out.println("Total passwords recovered: " + count);
+		
 	}
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		DictionaryAttack da = new DictionaryAttack();
-		// To implement
+		da.readPasswords("LeakedPasswords.txt");
+		System.out.println("Reading hashed passwords");
+		da.addToHashDictionary("CommonPasswords.txt");
+		System.out.println("Dictionary is ready");
 		da.doDictionaryAttack();
+		System.out.println("Attack completed");
 	}
-
 }

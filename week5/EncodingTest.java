@@ -15,7 +15,9 @@ public class EncodingTest {
         String input = "Hello Big World";
         String encodedInput = Hex.encodeHexString(input.getBytes());
         System.out.println("The encoded input is: " + encodedInput);
-        byte[] byteValue = Hex.decodeHex(encodedInput);
+        
+        String newInput = "4d6f64756c652032";
+        byte[] byteValue = Hex.decodeHex(newInput);
         String decodedInput1 = new String(byteValue);
         System.out.println("The decoded input is: " + decodedInput1);
         System.out.println("The decoded seperated input is: " + decodedInput1.toCharArray());
