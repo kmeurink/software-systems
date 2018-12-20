@@ -88,8 +88,23 @@ public class DictionaryAttack {
      * the original password.
 	 * @param filename filename of the dictionary.
 	 */
-    	public void addToHashDictionary(String filename) {
-        // To implement        
+    public void addToHashDictionary(String filename) {
+		File file = new File(filename);
+		try {
+			Scanner in = new Scanner(file);
+			String passWord;
+			String hashPass;
+			while (in.hasNextLine()) {
+				passWord = in.nextLine();		
+				hashPass = getPasswordHash(passWord);
+				passwordMap.put(hashPass, passWord);
+			}
+			in.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+    	
+    	
     }
 	/**
 	 * Do the dictionary attack.
