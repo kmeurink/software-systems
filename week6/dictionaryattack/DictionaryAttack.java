@@ -125,20 +125,49 @@ public class DictionaryAttack {
 		System.out.println("Total passwords recovered: " + count);
 		
 	}
+	/**
+	 * Method to determine the starting index of the long, based on the expected password size.
+	 * @param size - the expected password size.
+	 * @return - the starting index of the long.
+	 */
+	public int startSize(int size) {
+		int start = (int) Math.pow(36, size) - 1; 
+		return 0;
+	}
 	
-	public void doBruteForce(String hashPass) {
-		
+	/**
+	 * Method to bruteForce a password.
+	 * @param hashPass - the password that is to be brute forced.
+	 * @param wordSize - the expected size of this password.
+	 */
+	public void doBruteForce(String hashPass, int wordSize) {
+		int i = startSize(wordSize);
+		while (!hashPass.equals(this.getPasswordHash(Long.toString(i, 36)))) {
+			if (i == Long.MAX_VALUE) {
+				return;
+			}
+			i++;
+		}
+		System.out.println("The password is: " + Long.toString(i, 36));
 	}
 	
 	
 	
 	public static void main(String[] args) throws IOException {
-		DictionaryAttack da = new DictionaryAttack();
-		da.readPasswords("LeakedPasswords.txt");
-		System.out.println("Reading hashed passwords");
-		da.addToHashDictionary("CommonPasswords.txt");
-		System.out.println("Dictionary is ready");
-		da.doDictionaryAttack();
-		System.out.println("Attack completed");
+//		DictionaryAttack da = new DictionaryAttack();
+//		da.readPasswords("LeakedPasswords.txt");
+//		System.out.println("Reading hashed passwords");
+//		da.addToHashDictionary("CommonPasswords.txt");
+//		System.out.println("Dictionary is ready");
+//		da.doDictionaryAttack();
+//		System.out.println("Attack completed");
+		DictionaryAttack bf = new DictionaryAttack();
+		
+		long mili = System.currentTimeMillis();
+
+		bf.doBruteForce(bf.getPasswordHash("tree"), 4);
+
+		System.out.println("Computed in " + -1 * (double) (mili - System.currentTimeMillis()) / 1000 + "s");
+		
 	}
 }
