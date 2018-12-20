@@ -4,6 +4,16 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import org.apache.commons.codec.binary.Hex;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 
 public class DictionaryAttack {
 	private Map<String, String> passwordMap;
@@ -18,14 +28,20 @@ public class DictionaryAttack {
 	 * the username, and the password hash should be the content.
 	 * @param filename
 	 */
-	public void readPasswords(String filename) {
-		Scanner in = new Scanner(filename);
-		while (in.hasNextLine()) {
-			String total = in.nextLine();
-			String[] parts = total.split(" ");
-			passwordMap.put(parts[0], parts[1]);
+	public void readPasswords(String filename) throws IOException {
+		File file = new File(filename);
+		try {
+			Scanner in = new Scanner(file);
+			while (in.hasNextLine()) {
+				String total = in.nextLine();
+				String[] parts = total.split(" ");
+				passwordMap.put(parts[0], parts[1]);
+			}
+			in.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
 		}
-		in.close();
+
 	}
 
 	/**
@@ -35,9 +51,16 @@ public class DictionaryAttack {
 	 * @return
 	 */
 	public String getPasswordHash(String password) {
-    		// To implement
-    		return null;
-	}
+		try {
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			byte[] message = md.digest(password.getBytes());
+			String hash = Hex.encodeHexString(message);
+			return hash;
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		return null;
+   	}
 	/**
 	 * Checks the password for the user the password list. If the user
 	 * does not exist, returns false.
