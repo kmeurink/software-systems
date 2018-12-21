@@ -131,8 +131,8 @@ public class DictionaryAttack {
 	 * @return - the starting index of the long.
 	 */
 	public int startSize(int size) {
-		int start = (int) Math.pow(36, size) - 1; 
-		return 0;
+		int start = (int) Math.pow(36, size - 1); 
+		return start;
 	}
 	
 	/**
@@ -142,6 +142,7 @@ public class DictionaryAttack {
 	 */
 	public void doBruteForce(String hashPass, int wordSize) {
 		int i = startSize(wordSize);
+		System.out.println("start index: " + i);
 		while (!hashPass.equals(this.getPasswordHash(Long.toString(i, 36)))) {
 			if (i == Long.MAX_VALUE) {
 				return;
@@ -165,9 +166,13 @@ public class DictionaryAttack {
 		
 		long mili = System.currentTimeMillis();
 
-		bf.doBruteForce(bf.getPasswordHash("tree"), 4);
+		bf.doBruteForce(bf.getPasswordHash("banana"), 6);
 
 		System.out.println("Computed in " + -1 * (double) (mili - System.currentTimeMillis()) / 1000 + "s");
+		System.out.println((int) Math.pow(36, 4 - 1));
+		System.out.println("Optimized time for 6 digit password: 255.856s");
+		System.out.println("Unoptimized time for 6 digit password: 606.314s");
+		System.out.println(Long.toString(46656, 36));
 		
 	}
 }
