@@ -183,25 +183,25 @@ public class Card {
 	 * Read and create a new Card object from a file.
 	 */
 	public static Card read(BufferedReader in) throws EOFException {
-		String card = null;
 		try {
-			card = in.readLine();
+			String card = in.readLine();
+			
+			Scanner check = new Scanner(card);
+			char[] suit = check.next().toUpperCase().toCharArray();
+			char[] rank = check.next().toUpperCase().toCharArray();
+			if (isValidSuit(suit[0])) {
+				if (isValidRank(rank[0])) {
+					//check.close();
+					return new Card(suit[0], rank[0]);
+				}
+			} else {
+				//check.close();
+				return null;
+			}
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		Scanner check = new Scanner(card);
-		char[] suit = check.next().toUpperCase().toCharArray();
-		char[] rank = check.next().toUpperCase().toCharArray();
-		if (isValidSuit(suit[0])) {
-			if (isValidRank(rank[0])) {
-				check.close();
-				return new Card(suit[0], rank[0]);
-			}
-		} else {
-			check.close();
-			return null;
-		}
-		check.close();
 		return null;
 	}
 	
