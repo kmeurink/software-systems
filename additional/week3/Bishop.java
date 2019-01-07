@@ -1,4 +1,4 @@
-package ss.additional;
+package ss.additional.week3;
 
 public class Bishop implements Piece{
 

@@ -1,5 +1,7 @@
 package ss.additional.week5;
 
+import java.util.*;
+
 //Exercise 12.3
 public class Course {
 	private List<Student> enrollees;
@@ -10,9 +12,9 @@ public class Course {
 	}
 	
 	//Adding method for adding student to list
-	public void enroll (Student student) {
+	public void enroll(Student student) {
 		//To ensure the student is not already in the list, a check is added:
-		if (!enrollees.contain(student)) {
+		if (!enrollees.contains(student)) {
 			enrollees.add(student);	
 		}
 	}
@@ -29,15 +31,16 @@ public class Course {
 				count++;
 			}
 		}
+		return count;
 	}
 	public List<Student> failingStudents() {
-		List<Student> FailedList = new ArrayList<Student>();
+		List<Student> failedList = new ArrayList<Student>();
 		for (int i = 0; i < enrollees.size(); i++) {
 			if (enrollees.get(i).finalGrade() < MINIMUM_PASS) {
-				FailedList.add(enrollees.get(i));
+				failedList.add(enrollees.get(i));
 			}
 		}
-		return FailedList;
+		return failedList;
 	}
 	
 	private class Student {

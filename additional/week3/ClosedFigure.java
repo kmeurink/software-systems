@@ -1,4 +1,4 @@
-package ss.additional;
+package ss.additional.week3;
 
 /**
  * exercise 9.2 recommended exercises.

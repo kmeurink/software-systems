@@ -166,13 +166,12 @@ public class DictionaryAttack {
 		
 		long mili = System.currentTimeMillis();
 
-		bf.doBruteForce(bf.getPasswordHash("banana"), 6);
+		bf.doBruteForce(bf.getPasswordHash("sane"), 4);
 
 		System.out.println("Computed in " + -1 * (double) (mili - System.currentTimeMillis()) / 1000 + "s");
-		System.out.println((int) Math.pow(36, 4 - 1));
+		//System.out.println((int) Math.pow(36, 4 - 1));
 		System.out.println("Optimized time for 6 digit password: 255.856s");
 		System.out.println("Unoptimized time for 6 digit password: 606.314s");
-		System.out.println(Long.toString(46656, 36));
 		
 	}
 }

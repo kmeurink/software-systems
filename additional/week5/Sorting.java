@@ -13,7 +13,7 @@ public class Sorting {
 
 	}
 	/**
-	 * Method that merges the specified lists
+	 * Method that merges the specified lists.
 	 * @param list1
 	 * @param list2
 	 * @param order
@@ -21,7 +21,7 @@ public class Sorting {
 	 */
 	// @require list1 and list2 are sorted
 	// @ensure merge(list1, list2) is sorted
-	public static <E> List<E> merge (List<E> list1, List<E> list2, Comparator<E> order) {
+	public static <E> List<E> merge(List<E> list1, List<E> list2, Comparator<E> order) {
 		int e1 = 0;
 		int e2 = 0;
 		List<E> merged = new ArrayList<E>();

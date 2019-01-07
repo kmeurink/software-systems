@@ -1,4 +1,4 @@
-package ss.week1.test;
+package ss.additional.week1;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -7,9 +7,9 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import ss.week1.IntLocation;
+import ss.week1.Password;
 
-public class IntLocationTest {
+public class ModulusCounterTest {
 	/** Test variables for a ModulusCounter object. */
 	private ModulusCounter modulo1;
 	private ModulusCounter modulo5;

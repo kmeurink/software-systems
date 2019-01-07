@@ -1,4 +1,4 @@
-package ss.additional;
+package ss.additional.week3;
 
 /**
  * Implementation of the Piece interface to model a rook in chess.

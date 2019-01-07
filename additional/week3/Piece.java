@@ -1,4 +1,4 @@
-package ss.additional;
+package ss.additional.week3;
 /**
  * Model the possible methods corresponding with a chess piece.
  * @author kester.meurink
@@ -15,6 +15,6 @@ public interface Piece {
 	/**
 	 * Moves the chess piece to the selected square.
 	 */
-	//@ requires canMoveTo( row, col) == true;
+	//@ requires canMoveTo(row, col) == true;
 	public void moveTo(int row, int col);
 }

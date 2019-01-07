@@ -1,11 +1,12 @@
 package ss.additional.week5;
 
-import java.util.List;
+import java.util.*;
 
 public class PlayingCard {
 	
 	public PlayingCard() {
 		
+
 	}
 	
 	public boolean sameSuit(List<PlayingCard> list) {

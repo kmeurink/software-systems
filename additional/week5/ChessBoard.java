@@ -1,6 +1,6 @@
 package ss.additional.week5;
 
-import java.util.List;
+import java.util.*;
 
 //Exercise 12.13
 /**

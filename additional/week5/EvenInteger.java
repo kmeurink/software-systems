@@ -1,7 +1,7 @@
 package ss.additional.week5;
 
 import java.util.List;
-
+//Exercise 12.2
 public class EvenInteger {
 
 	public static void main(String[] args) {
@@ -18,10 +18,4 @@ public class EvenInteger {
 		}
 		return count;
 	}
-	
-	//Exercise 12.3
-	
-	
-	
-	
 }

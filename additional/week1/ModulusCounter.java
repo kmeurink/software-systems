@@ -1,4 +1,4 @@
-package ss.week1;
+package ss.additional.week1;
 /**
  * 	Model a modulus algorithm.
  * @author kester.meurink
@@ -14,6 +14,7 @@ public class ModulusCounter {
 	 */
 	public ModulusCounter(int max) {
 		this.max = max;
+		this.mod = 0;
 	}
 	//Queries:
 	/*
@@ -21,6 +22,10 @@ public class ModulusCounter {
 	 */
 	public int answer() {
 		return mod;
+	}
+	
+	public int max() {
+		return this.max;
 	}
 	
 	//Commands:
@@ -32,5 +37,8 @@ public class ModulusCounter {
 		this.mod = value - max * (value / max);
 	}
 	
+	public void reset() {
+		this.mod = 0;
+	}
 
 }
