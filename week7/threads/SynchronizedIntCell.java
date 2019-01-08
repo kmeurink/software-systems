@@ -2,6 +2,7 @@ package ss.week7.threads;
 
 /**
  * Correct communication between IntProducer en IntConsumer.
+ * Exercise 7.17
  */
 public class SynchronizedIntCell implements IntCell {
 	private boolean buffer = false;

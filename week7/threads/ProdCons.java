@@ -9,9 +9,10 @@ package ss.week7.threads;
  * @author Revised by Rieks op den Akker
  * @version january 2002
  */
+
 public class ProdCons {
 	public static void main(String[] args) {
-		IntCell cell = new SynchronizedIntCell();
+		IntCell cell = new FineGrainedIntCell();
 		Thread prod1 = new IntProducer(1, cell);
 		Thread prod2 = new IntProducer(2, cell);
 		Thread cons1 = new IntConsumer(1, cell);
