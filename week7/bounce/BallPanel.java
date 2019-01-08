@@ -18,6 +18,20 @@ public class BallPanel extends JPanel {
 
 	public BallPanel() {
 		this.balls = new java.util.ArrayList<>();
+		new AnimateThread().start();
+	}
+	
+	//Exercise 7.6
+	// Creating a thread to run the animation of the balls.
+	class AnimateThread extends Thread {
+		AnimateThread() {
+		}
+
+		// overrides Thread.run
+		// runs the animate command
+		public void run() {
+			animate();
+		}
 	}
 
 	public void animate() {

@@ -14,7 +14,7 @@ public class Ball {
 	public JPanel panel;
 
 	/*@
-	   requires panel != null;
+	   requires panelArg != null;
 	 */
 	public Ball(JPanel panelArg) {
 		this.panel = panelArg;
