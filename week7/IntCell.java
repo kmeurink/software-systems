@@ -1,17 +1,19 @@
 package ss.week7;
-
+//Exercise 7.20
 public class IntCell {
     private int contents = 0;
 
-    public void add(int amount) {
+    public synchronized void add(int amount) {
         contents = contents + amount;
     }
-    public int get() {
+    public synchronized int get() {
         return contents;
     }
 
     public static void main(String[] args) {
-        IntCell cell = new IntCell();
+    	//For loop to run the program 50 times
+    			for (int i = 0; i < 50; i++) { 
+    	IntCell cell = new IntCell();
         Adder a1 = new Adder(cell, 1);
         Adder a2 = new Adder(cell, 2);
         a1.start();
@@ -23,6 +25,7 @@ public class IntCell {
             e.printStackTrace();
         }
         System.out.println(cell.get());
+    			}
     }
 }
 
