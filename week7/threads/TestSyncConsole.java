@@ -3,7 +3,7 @@ package ss.week7.threads;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class TestSyncConsole extends Thread {
-	ReentrantLock lock = new ReentrantLock();
+	static ReentrantLock lock = new ReentrantLock();
 	public static void main(String[] args) {
 		new TestSyncConsole("Thread A").start();
 		new TestSyncConsole("Thread B").start();
