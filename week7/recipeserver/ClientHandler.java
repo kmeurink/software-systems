@@ -43,7 +43,7 @@ public class ClientHandler extends Thread {
     final static String LIST_COMMAND = "LIST";
     final static String GET_COMMAND = "GET";
     /**
-     * Handle server commands
+     * Handle server commands.
      * @param msg command from client
      * @param out Writer to to write the result to.
      * @throws IOException 
@@ -52,7 +52,7 @@ public class ClientHandler extends Thread {
     	if (msg.equals(LIST_COMMAND)) {
     		System.out.println("Listing recipes.");
     		listRecipes(out);
-    	} else if (msg.startsWith(GET_COMMAND + " ")){
+    	} else if (msg.startsWith(GET_COMMAND + " ")) {
     		System.out.println("Showing recipe.");
     		String recipeName = msg.substring(GET_COMMAND.length() + 1);
     		showRecipe(recipeName, out);

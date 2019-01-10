@@ -13,10 +13,11 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * A client for a sloppily programmed recipe server.
+ * A client meant to try and hack the recipe server.
+ * @author kester.meurink
  *
  */
-public class RecipeClient {
+public class RogueRecipeClient {
     private static final String USAGE = "usage: <address> <port>";
 
     /**
