@@ -8,6 +8,7 @@ import java.io.OutputStreamWriter;
 import java.net.Socket;
 
 /**
+ * P7.20
  * Peer for a simple client-server application.
  * @author  Theo Ruys
  * @version 2005.02.21
@@ -42,8 +43,10 @@ public class Peer implements Runnable {
      */
     public void run() {
     	try {
-			while (this.in.ready()) {
-				System.out.println(this.in.readLine());
+    		String line = this.in.readLine();
+			while (line != null) {
+				System.out.println(line);
+				line = this.in.readLine();
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -57,14 +60,38 @@ public class Peer implements Runnable {
      * On Peer.EXIT the method ends
      */
     public void handleTerminalInput() {
+    	try {
+    		String input = "Connected";
+    		while (input != null) {
+    			input = readString(this.getName() + ": ");
+    			if (input != EXIT) {
+    				this.out.write(input);
+    				this.out.newLine();
+    				this.out.flush();
+    			} else {
+    				this.out.write("EXIT confirmed.");
+    				this.out.close();
+    			}
+    		}
     	
+    	
+    	} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
 
     /**
      * Closes the connection, the sockets will be terminated.
      */
     public void shutDown() {
-    	
+    	try {
+    		System.out.println("System shutting down.");
+			this.in.close();
+	    	this.out.close();
+	    	this.sock.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
 
     /**  returns name of the peer object.*/
