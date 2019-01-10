@@ -8,7 +8,7 @@ import java.io.OutputStreamWriter;
 import java.net.Socket;
 
 /**
- * Peer for a simple client-server application
+ * Peer for a simple client-server application.
  * @author  Theo Ruys
  * @version 2005.02.21
  */
@@ -29,8 +29,11 @@ public class Peer implements Runnable {
      * @param   nameArg name of the Peer-proces
      * @param   sockArg Socket of the Peer-proces
      */
-    public Peer(String nameArg, Socket sockArg) throws IOException
-    {
+    public Peer(String nameArg, Socket sockArg) throws IOException {
+    	this.name = nameArg;
+    	this.sock = sockArg;
+    	this.in = new BufferedReader(new InputStreamReader(sockArg.getInputStream()));
+    	this.out = new BufferedWriter(new OutputStreamWriter(sockArg.getOutputStream()));
     }
 
     /**
@@ -38,6 +41,13 @@ public class Peer implements Runnable {
      * writes the characters to the default output.
      */
     public void run() {
+    	try {
+			while (this.in.ready()) {
+				System.out.println(this.in.readLine());
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
 
 
@@ -47,20 +57,22 @@ public class Peer implements Runnable {
      * On Peer.EXIT the method ends
      */
     public void handleTerminalInput() {
+    	
     }
 
     /**
-     * Closes the connection, the sockets will be terminated
+     * Closes the connection, the sockets will be terminated.
      */
     public void shutDown() {
+    	
     }
 
-    /**  returns name of the peer object*/
+    /**  returns name of the peer object.*/
     public String getName() {
         return name;
     }
 
-    /** read a line from the default input */
+    /** read a line from the default input. */
     static public String readString(String tekst) {
         System.out.print(tekst);
         String antw = null;
