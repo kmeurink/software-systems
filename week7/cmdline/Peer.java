@@ -47,6 +47,7 @@ public class Peer implements Runnable {
 			while (line != null) {
                 if (line.equals(EXIT)) {
                     shutDown();
+                    line = null;
                 }
 				System.out.println("Other: " + line);
 				line = this.in.readLine();
