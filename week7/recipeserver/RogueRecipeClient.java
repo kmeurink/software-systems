@@ -8,32 +8,28 @@ import java.io.OutputStreamWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
-
 /**
- * A client meant to try and hack the recipe server.
- * @author kester.meurink
+ * A client for a sloppily programmed recipe server.
  *
  */
+
 public class RogueRecipeClient {
     private static final String USAGE = "usage: <address> <port>";
-
     /**
      * @param args
      */
     public static void main(String[] args) {
-        if (args.length != 2) {
+    	if (args.length != 2) {
             System.out.println(USAGE);
             System.exit(0);
         }
-        
+         
         InetAddress addr = null;
         int port = 0;
         Socket sock = null;
 
-        // check args[1] - the IP-adress
+         // check args[1] - the IP-adress
         try {
             addr = InetAddress.getByName(args[0]);
         } catch (UnknownHostException e) {
@@ -42,7 +38,7 @@ public class RogueRecipeClient {
             System.exit(0);
         }
 
-        // parse args[2] - the port
+         // parse args[2] - the port
         try {
             port = Integer.parseInt(args[1]);
         } catch (NumberFormatException e) {
@@ -50,10 +46,6 @@ public class RogueRecipeClient {
             System.out.println("ERROR: port " + args[1] + " is not an integer");
             System.exit(0);
         }
-        
-        
-        String command = "LIST";
-
 
         // try to open a Socket to the server
         try {
@@ -62,60 +54,46 @@ public class RogueRecipeClient {
             System.out.println("ERROR: could not create a socket on " + addr
                     + " and port " + port);
         }
-        
+
         try {
-            BufferedReader in = new BufferedReader(new InputStreamReader(
-                    sock.getInputStream()));
-            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(
-                    sock.getOutputStream()));
-            
-            int rNum = -1;
+            BufferedReader in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
+            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(sock.getOutputStream()));
+            String file =  "";
             Scanner userIn = new Scanner(System.in);
-            
-            out.write(command);
-            out.newLine();
-            out.flush();
-            List<String> recipeNames = new ArrayList<>();
-            String line = in.readLine();
-            while (line != null && !line.equals("")) {
-            	recipeNames.add(line);
-            	line = in.readLine();
-            }
             do {
-                System.out.println("Available recipes on server:");
-            	for (int i = 0; i < recipeNames.size(); i++) {
-            		System.out.printf("%3d: %s" + System.lineSeparator(), i + 1, recipeNames.get(i));
-				}
-	            System.out.print("Enter recipe number (or 0 to exit): ");
-	            System.out.flush();
-	            if (userIn.hasNextInt()) {
-	            	rNum = userIn.nextInt();
-	            } else {
-	            	System.out.println("Invalid input, try again.");
-	            	userIn.next();
-	            }
-	            if (rNum > 0 && rNum < recipeNames.size() + 1) {
-		            out.write("GET " + recipeNames.get(rNum - 1));
-		            out.newLine();
-		            out.flush();
-		            System.out.println("Recipe text:");
-		            System.out.println("------");
-		            line = in.readLine();
-		            while (line != null && !line.equals("--EOT--")) {
-		            	// The server uses a special string ("--EOT--") to mark the end of a recipe.
-		            	System.out.println(line);
-		            	line = in.readLine();
-		            }
-		            System.out.println("------");
-	            } else {
-	            	System.out.println("Invalid recipe number, try again.");
-	            }
-            } while (rNum != 0);
+                System.out.println("What file would you like?:");
+                if (userIn.hasNextLine()) {
+                    file = userIn.nextLine();
+                } else {
+                    System.out.println("Invalid input, try again.");
+                    userIn.next();
+                }
+                if (file != "") {
+                    out.write("GET " + file);
+                    out.newLine();
+                    out.flush();
+                    System.out.println("File: ");
+                    String line;
+                    line = in.readLine();
+                    while (line != null && !line.equals("--EOT--")) {
+                        System.out.println(line);
+                        line = in.readLine();
+                    }
+                } else {
+                    System.out.println("Invalid recipe number, try again.");
+                }
+            } while (file != "exit");
             System.out.println("Exiting.");
             userIn.close();
         } catch (IOException e) {
             System.out.println("ERROR: unable to communicate to server");
             e.printStackTrace();
-        }   
+        }
+    }
+
+    private static void command (BufferedWriter out, String command) throws IOException {
+        out.write(command);
+        out.newLine();
+        out.flush();
     }
 }
