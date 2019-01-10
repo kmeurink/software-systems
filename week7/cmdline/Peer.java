@@ -45,7 +45,10 @@ public class Peer implements Runnable {
     	try {
     		String line = this.in.readLine();
 			while (line != null) {
-				System.out.println(line);
+                if (line.equals(EXIT)) {
+                    shutDown();
+                }
+				System.out.println("Other: " + line);
 				line = this.in.readLine();
 			}
 		} catch (IOException e) {
@@ -63,14 +66,16 @@ public class Peer implements Runnable {
     	try {
     		String input = "Connected";
     		while (input != null) {
-    			input = readString(this.getName() + ": ");
-    			if (input != EXIT) {
+    			input = readString();
+    			if (!input.equals(EXIT)) {
     				this.out.write(input);
     				this.out.newLine();
     				this.out.flush();
     			} else {
-    				this.out.write("EXIT confirmed.");
-    				this.out.close();
+    				this.out.write("Exit confirmed.");
+    	    		System.out.println("System shutting down.");
+    				shutDown();
+    				input = null;
     			}
     		}
     	
@@ -85,10 +90,7 @@ public class Peer implements Runnable {
      */
     public void shutDown() {
     	try {
-    		System.out.println("System shutting down.");
-			this.in.close();
-	    	this.out.close();
-	    	this.sock.close();
+	    	sock.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -100,8 +102,8 @@ public class Peer implements Runnable {
     }
 
     /** read a line from the default input. */
-    static public String readString(String tekst) {
-        System.out.print(tekst);
+    static public String readString() {
+        //System.out.print());
         String antw = null;
         try {
             BufferedReader in = new BufferedReader(new InputStreamReader(
