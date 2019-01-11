@@ -25,6 +25,9 @@ public class ClientHandler extends Thread {
     //@ requires serverArg != null && sockArg != null;
     public ClientHandler(Server serverArg, Socket sockArg) throws IOException {
         // TODO insert body
+    	this.server = serverArg;
+    	this.in = new BufferedReader(new InputStreamReader(sockArg.getInputStream()));
+    	this.out = new BufferedWriter(new OutputStreamWriter(sockArg.getOutputStream()));		
     }
 
     /**
@@ -40,7 +43,7 @@ public class ClientHandler extends Thread {
 
     /**
      * This method takes care of sending messages from the Client.
-     * Every message that is received, is preprended with the name
+     * Every message that is received, is pre-appended with the name
      * of the Client, and the new message is offered to the Server
      * for broadcasting. If an IOException is thrown while reading
      * the message, the method concludes that the socket connection is
@@ -48,6 +51,16 @@ public class ClientHandler extends Thread {
      */
     public void run() {
         // TODO insert body
+    	try {
+    		String input;
+    		while ((input = in.readLine()) != null) {
+    			server.broadcast(clientName + ": " + input);
+    		}
+    		shutdown();
+    	} catch (IOException e) {
+			e.printStackTrace();
+			shutdown();
+		}
     }
 
     /**
@@ -58,6 +71,14 @@ public class ClientHandler extends Thread {
      */
     public void sendMessage(String msg) {
         // TODO insert body
+	  	try {
+   			this.out.write(msg);
+   			this.out.newLine();
+    		this.out.flush();
+       	} catch (IOException e) {
+			e.printStackTrace();
+			shutdown();
+		}
     }
 
     /**

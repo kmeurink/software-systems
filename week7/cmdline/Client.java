@@ -22,6 +22,7 @@ public class Client {
         }
 
         String name = args[0];
+        System.out.println(name);
         InetAddress addr = null;
         int port = 0;
         Socket sock = null;
@@ -29,6 +30,7 @@ public class Client {
         // check args[1] - the IP-adress
         try {
             addr = InetAddress.getByName(args[1]);
+            System.out.println(addr);
         } catch (UnknownHostException e) {
             System.out.println(USAGE);
             System.out.println("ERROR: host " + args[1] + " unknown");
@@ -38,6 +40,7 @@ public class Client {
         // parse args[2] - the port
         try {
             port = Integer.parseInt(args[2]);
+            System.out.println(port);
         } catch (NumberFormatException e) {
             System.out.println(USAGE);
             System.out.println("ERROR: port " + args[2]
@@ -51,6 +54,7 @@ public class Client {
         } catch (IOException e) {
             System.out.println("ERROR: could not create a socket on " + addr
                     + " and port " + port);
+            e.printStackTrace();
         }
 
         // create Peer object and start the two-way communication

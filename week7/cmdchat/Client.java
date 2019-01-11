@@ -11,7 +11,7 @@ import java.net.UnknownHostException;
 
 
 /**
- * Client class for a simple client-server application
+ * Client class for a simple client-server application.
  * @author  Theo Ruys
  * @version 2005.02.21
  */
@@ -26,8 +26,8 @@ public class Client extends Thread{
 			System.exit(0);
 		}
 		
-		InetAddress host=null;
-		int port =0;
+		InetAddress host = null;
+		int port = 0;
 
 		try {
 			host = InetAddress.getByName(args[1]);
@@ -48,10 +48,10 @@ public class Client extends Thread{
 			client.sendMessage(args[0]);
 			client.start();
 			
-			do{
+			do {
 				String input = readString("");
 				client.sendMessage(input);
-			}while(true);
+			} while (true);
 			
 		} catch (IOException e) {
 			print("ERROR: couldn't construct a client object!");
@@ -66,11 +66,16 @@ public class Client extends Thread{
 	private BufferedWriter out;
 
 	/**
-	 * Constructs a Client-object and tries to make a socket connection
+	 * Constructs a Client-object and tries to make a socket connection.
 	 */
 	public Client(String name, InetAddress host, int port)
 			throws IOException {
 		// TODO insert body
+		this.clientName = name;
+		this.sock = new Socket(host, port);
+		System.out.println("Socket created");
+    	this.in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
+    	this.out = new BufferedWriter(new OutputStreamWriter(sock.getOutputStream()));		
 	}
 
 	/**
@@ -79,25 +84,48 @@ public class Client extends Thread{
 	 */
 	public void run() {
 		// TODO insert body
+    	try {
+    		String line;
+			while ((line = in.readLine()) != null) {
+  				System.out.println(line);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			shutdown();
+		}
 	}
 
 	/** send a message to a ClientHandler. */
 	public void sendMessage(String msg) {
 		// TODO insert body
+	  	try {
+   			this.out.write(msg);
+   			this.out.newLine();
+    		this.out.flush();
+       	} catch (IOException e) {
+			e.printStackTrace();
+			shutdown();
+		}
 	}
 
 	/** close the socket connection. */
 	public void shutdown() {
 		print("Closing socket connection...");
 		// TODO insert body
+		try {
+			sock.close();
+		} catch (IOException e) {
+			System.out.println("Error during closing of socket");
+			e.printStackTrace();
+		}
 	}
 
-	/** returns the client name */
+	/** returns the client name. */
 	public String getClientName() {
 		return clientName;
 	}
 	
-	private static void print(String message){
+	private static void print(String message) {
 		System.out.println(message);
 	}
 	
