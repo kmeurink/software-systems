@@ -19,9 +19,11 @@ public class Server extends Thread {
     private MessageUI mui;
     private Collection<ClientHandler> threads;
 
-    /** Constructs a new Server object */
+    /** Constructs a new Server object. */
     public Server(int portArg, MessageUI muiArg) {
         // TODO Add implementation
+    	this.port = portArg;
+    	this.mui = muiArg;
     }
 
     /**
@@ -32,6 +34,7 @@ public class Server extends Thread {
      */
     public void run() {
         // TODO Add implementation
+    	
     }
 
     /**
@@ -41,6 +44,9 @@ public class Server extends Thread {
      */
     public void broadcast(String msg) {
         // TODO Add implementation
+    	for (ClientHandler handler : threads) {
+    		handler.sendMessage(msg);
+    	}
     }
 
     /**
@@ -49,6 +55,7 @@ public class Server extends Thread {
      */
     public void addHandler(ClientHandler handler) {
         // TODO Add implementation
+    	threads.add(handler);
     }
 
     /**
@@ -57,6 +64,7 @@ public class Server extends Thread {
      */
     public void removeHandler(ClientHandler handler) {
         // BODY TO BE ADDED
+    	threads.remove(handler);
     }
 
 }

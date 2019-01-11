@@ -23,11 +23,14 @@ public class Client extends Thread {
 	private BufferedWriter out;
 
 	/**
-	 * Constructs a Client-object and tries to make a socket connection
+	 * Constructs a Client-object and tries to make a socket connection.
 	 */
 	public Client(String name, InetAddress host, int port, MessageUI muiArg)
 			throws IOException {
 		// TODO Add implementation
+		this.clientName = name;
+        this.sock = new Socket(host, port);
+        this.mui = muiArg;
 	}
 
 	/**
@@ -36,20 +39,27 @@ public class Client extends Thread {
 	 */
 	public void run() {
 		// TODO Add implementation
+		
 	}
 
 	/** send a message to a ClientHandler. */
 	public void sendMessage(String msg) {
 		// TODO Add implementation
+		
 	}
 
 	/** close the socket connection. */
 	public void shutdown() {
 		mui.addMessage("Closing socket connection...");
 		// TODO Add implementation
+		try {
+			this.sock.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
-	/** returns the client name */
+	/** returns the client name. */
 	public String getClientName() {
 		return clientName;
 	}

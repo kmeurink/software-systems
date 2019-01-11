@@ -26,6 +26,11 @@ public class ClientHandler extends Thread {
      */
     public ClientHandler(Server serverArg, Socket sockArg) throws IOException {
         // TODO Add implementation
+    	this.server = serverArg;
+    	this.sock = sockArg;
+    	this.in = new BufferedReader(new InputStreamReader(sockArg.getInputStream()));
+    	this.out = new BufferedWriter(new OutputStreamWriter(sockArg.getOutputStream()));
+    	
     }
 
     /**
@@ -41,7 +46,7 @@ public class ClientHandler extends Thread {
 
     /**
      * This method takes care of sending messages from the Client.
-     * Every message that is received, is preprended with the name
+     * Every message that is received, is pre-appended with the name
      * of the Client, and the new message is offered to the Server
      * for broadcasting. If an IOException is thrown while reading
      * the message, the method concludes that the socket connection is
@@ -49,6 +54,19 @@ public class ClientHandler extends Thread {
      */
     public void run() {
         // TODO Add implementation
+    	try {
+    		String input = "Connected";
+    		while (input != null) {
+    			input = readString();
+    			this.out.write(clientName + " " + input);
+    			this.out.newLine();
+    			this.out.flush();
+    		}
+    		
+    	} catch (IOException e) {
+			e.printStackTrace();
+			shutdown();
+		}
     }
 
     /**
@@ -59,6 +77,16 @@ public class ClientHandler extends Thread {
      */
     public void sendMessage(String msg) {
         // TODO Add implementation
+    	try {
+    		String line = this.in.readLine();
+			while (line != null) {
+				System.out.println(line);
+				line = this.in.readLine();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+            shutdown();
+		}
     }
 
     /**
@@ -70,6 +98,19 @@ public class ClientHandler extends Thread {
         server.removeHandler(this);
         server.broadcast("[" + clientName + " has left]");
     }
+    
+    /** read a line from the default input. */
+    static public String readString() {
+        //System.out.print());
+        String antw = null;
+        try {
+            BufferedReader in = new BufferedReader(new InputStreamReader(
+                    System.in));
+            antw = in.readLine();
+        } catch (IOException e) {
+        }
 
+        return (antw == null) ? "" : antw;
+    }
 }
 
